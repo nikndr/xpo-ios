@@ -3,27 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67F85D491437577F38FBADF3 /* Pods_Expo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */; };
+		D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E6C92242E40460082A784 /* SignUpViewController.swift */; };
+		D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C053242E5FCD00ED48DA /* FormDataSender.swift */; };
+		D470C056242E630200ED48DA /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C055242E630200ED48DA /* LogIn.swift */; };
+		D470C058242E6EC100ED48DA /* UIButtonExtrnsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */; };
+		D470C05C242E7ECF00ED48DA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D470C05B242E7ECF00ED48DA /* .gitignore */; };
 		D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08B242E342900F43C57 /* AppDelegate.swift */; };
 		D48BF08E242E342900F43C57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08D242E342900F43C57 /* SceneDelegate.swift */; };
-		D48BF090242E342900F43C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08F242E342900F43C57 /* ViewController.swift */; };
+		D48BF090242E342900F43C57 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08F242E342900F43C57 /* LogInViewController.swift */; };
 		D48BF093242E342900F43C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF091242E342900F43C57 /* Main.storyboard */; };
 		D48BF095242E342E00F43C57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48BF094242E342E00F43C57 /* Assets.xcassets */; };
 		D48BF098242E342E00F43C57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expo.release.xcconfig"; path = "Target Support Files/Pods-Expo/Pods-Expo.release.xcconfig"; sourceTree = "<group>"; };
+		D44E6C92242E40460082A784 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D470C053242E5FCD00ED48DA /* FormDataSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataSender.swift; sourceTree = "<group>"; };
+		D470C055242E630200ED48DA /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtrnsion.swift; sourceTree = "<group>"; };
+		D470C05B242E7ECF00ED48DA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D48BF088242E342900F43C57 /* Expo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48BF08B242E342900F43C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48BF08D242E342900F43C57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D48BF08F242E342900F43C57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D48BF08F242E342900F43C57 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		D48BF092242E342900F43C57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D48BF094242E342E00F43C57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48BF097242E342E00F43C57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48BF099242E342E00F43C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB64FB5949269D5575899DEA /* Pods-Expo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expo.debug.xcconfig"; path = "Target Support Files/Pods-Expo/Pods-Expo.debug.xcconfig"; sourceTree = "<group>"; };
+		EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +45,81 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F85D491437577F38FBADF3 /* Pods_Expo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		603FC3A5A14A27AD9D0DF686 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB64FB5949269D5575899DEA /* Pods-Expo.debug.xcconfig */,
+				D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A005B95FB057042E84464D3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D44E6C8D242E3FB90082A784 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D44E6C8E242E3FC20082A784 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D48BF08F242E342900F43C57 /* LogInViewController.swift */,
+				D44E6C92242E40460082A784 /* SignUpViewController.swift */,
+				D470C053242E5FCD00ED48DA /* FormDataSender.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D44E6C8F242E3FC90082A784 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D470C055242E630200ED48DA /* LogIn.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D44E6C90242E3FCE0082A784 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D48BF091242E342900F43C57 /* Main.storyboard */,
+				D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */,
+				D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D44E6C91242E3FDF0082A784 /* AppFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D48BF08B242E342900F43C57 /* AppDelegate.swift */,
+				D48BF08D242E342900F43C57 /* SceneDelegate.swift */,
+			);
+			path = AppFiles;
+			sourceTree = "<group>";
+		};
 		D48BF07F242E342900F43C57 = {
 			isa = PBXGroup;
 			children = (
 				D48BF08A242E342900F43C57 /* Expo */,
 				D48BF089242E342900F43C57 /* Products */,
+				603FC3A5A14A27AD9D0DF686 /* Pods */,
+				A005B95FB057042E84464D3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,13 +134,14 @@
 		D48BF08A242E342900F43C57 /* Expo */ = {
 			isa = PBXGroup;
 			children = (
-				D48BF08B242E342900F43C57 /* AppDelegate.swift */,
-				D48BF08D242E342900F43C57 /* SceneDelegate.swift */,
-				D48BF08F242E342900F43C57 /* ViewController.swift */,
-				D48BF091242E342900F43C57 /* Main.storyboard */,
+				D44E6C91242E3FDF0082A784 /* AppFiles */,
+				D44E6C8F242E3FC90082A784 /* Model */,
+				D44E6C90242E3FCE0082A784 /* View */,
+				D44E6C8E242E3FC20082A784 /* Controller */,
+				D44E6C8D242E3FB90082A784 /* Networking */,
 				D48BF094242E342E00F43C57 /* Assets.xcassets */,
-				D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */,
 				D48BF099242E342E00F43C57 /* Info.plist */,
+				D470C05B242E7ECF00ED48DA /* .gitignore */,
 			);
 			path = Expo;
 			sourceTree = "<group>";
@@ -74,9 +153,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D48BF09C242E342E00F43C57 /* Build configuration list for PBXNativeTarget "Expo" */;
 			buildPhases = (
+				B70203BBD9FB85C4DB7B8512 /* [CP] Check Pods Manifest.lock */,
 				D48BF084242E342900F43C57 /* Sources */,
 				D48BF085242E342900F43C57 /* Frameworks */,
 				D48BF086242E342900F43C57 /* Resources */,
+				A4C969C396306D1ED1A32A7F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D470C05C242E7ECF00ED48DA /* .gitignore in Resources */,
 				D48BF098242E342E00F43C57 /* LaunchScreen.storyboard in Resources */,
 				D48BF095242E342E00F43C57 /* Assets.xcassets in Resources */,
 				D48BF093242E342900F43C57 /* Main.storyboard in Resources */,
@@ -133,13 +215,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A4C969C396306D1ED1A32A7F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B70203BBD9FB85C4DB7B8512 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Expo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D48BF084242E342900F43C57 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D48BF090242E342900F43C57 /* ViewController.swift in Sources */,
+				D48BF090242E342900F43C57 /* LogInViewController.swift in Sources */,
+				D470C056242E630200ED48DA /* LogIn.swift in Sources */,
+				D470C058242E6EC100ED48DA /* UIButtonExtrnsion.swift in Sources */,
 				D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */,
+				D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */,
+				D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */,
 				D48BF08E242E342900F43C57 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +410,7 @@
 		};
 		D48BF09D242E342E00F43C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB64FB5949269D5575899DEA /* Pods-Expo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +429,7 @@
 		};
 		D48BF09E242E342E00F43C57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

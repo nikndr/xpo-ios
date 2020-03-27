@@ -1,0 +1,6 @@
+framework module Pods_Expo {
+  umbrella header "Pods-Expo-umbrella.h"
+
+  export *
+  module * { export * }
+}

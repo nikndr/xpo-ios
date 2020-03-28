@@ -8,7 +8,10 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController, FormDataSender {
+class SignUpViewController: AuthenticationViewController, FormDataSender {
+    
+    weak var sourceViewController: LogInViewController?
+    
     // MARK: - Outlets
 
     @IBOutlet var fullNameTextField: UITextField!
@@ -33,45 +36,12 @@ class SignUpViewController: UIViewController, FormDataSender {
         dismiss(animated: true, completion: nil)
     }
 
-    // MARK: - Gestures
-
-    func registerGestures() {
-        let tapGestureBackground = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
-        view.addGestureRecognizer(tapGestureBackground)
-    }
-
-    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-
-    // MARK: - Notifications
-
-    func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 0 {
-                view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            view.frame.origin.y = 0
-        }
-    }
-
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         registerGestures()
-        registerNotifications()
 
         fullNameTextField.delegate = self
         usernameTextField.delegate = self
@@ -80,6 +50,13 @@ class SignUpViewController: UIViewController, FormDataSender {
         createAccountButton.setEnabled(false)
 
         manageTextFieldEditing()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unregisterNotifications()
+        sourceViewController?.registerNotifications()
+        sourceViewController = nil
     }
 
     // MARK: - Text field validation
@@ -103,17 +80,5 @@ class SignUpViewController: UIViewController, FormDataSender {
         if allFieldsFilled {
             print("createAccount()")
         }
-    }
-}
-
-extension SignUpViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
-            nextResponder.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        return false
     }
 }

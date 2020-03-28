@@ -3,16 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		67F85D491437577F38FBADF3 /* Pods_Expo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */; };
 		D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E6C92242E40460082A784 /* SignUpViewController.swift */; };
+		D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D456BEC3242EB54B006D9965 /* SegueHandler.swift */; };
 		D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C053242E5FCD00ED48DA /* FormDataSender.swift */; };
 		D470C056242E630200ED48DA /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C055242E630200ED48DA /* LogIn.swift */; };
-		D470C058242E6EC100ED48DA /* UIButtonExtrnsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */; };
+		D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C057242E6EC100ED48DA /* UIButtonExtension.swift */; };
 		D470C05C242E7ECF00ED48DA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D470C05B242E7ECF00ED48DA /* .gitignore */; };
+		D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */; };
 		D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08B242E342900F43C57 /* AppDelegate.swift */; };
 		D48BF08E242E342900F43C57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08D242E342900F43C57 /* SceneDelegate.swift */; };
 		D48BF090242E342900F43C57 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48BF08F242E342900F43C57 /* LogInViewController.swift */; };
@@ -24,10 +26,12 @@
 /* Begin PBXFileReference section */
 		D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expo.release.xcconfig"; path = "Target Support Files/Pods-Expo/Pods-Expo.release.xcconfig"; sourceTree = "<group>"; };
 		D44E6C92242E40460082A784 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D456BEC3242EB54B006D9965 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		D470C053242E5FCD00ED48DA /* FormDataSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataSender.swift; sourceTree = "<group>"; };
 		D470C055242E630200ED48DA /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
-		D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtrnsion.swift; sourceTree = "<group>"; };
+		D470C057242E6EC100ED48DA /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		D470C05B242E7ECF00ED48DA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		D48BF088242E342900F43C57 /* Expo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D48BF08B242E342900F43C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D48BF08D242E342900F43C57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,9 +83,10 @@
 		D44E6C8E242E3FC20082A784 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D456BEC2242EB536006D9965 /* Protocols */,
 				D48BF08F242E342900F43C57 /* LogInViewController.swift */,
 				D44E6C92242E40460082A784 /* SignUpViewController.swift */,
-				D470C053242E5FCD00ED48DA /* FormDataSender.swift */,
+				D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -99,7 +104,7 @@
 			children = (
 				D48BF091242E342900F43C57 /* Main.storyboard */,
 				D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */,
-				D470C057242E6EC100ED48DA /* UIButtonExtrnsion.swift */,
+				D470C057242E6EC100ED48DA /* UIButtonExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -111,6 +116,15 @@
 				D48BF08D242E342900F43C57 /* SceneDelegate.swift */,
 			);
 			path = AppFiles;
+			sourceTree = "<group>";
+		};
+		D456BEC2242EB536006D9965 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D470C053242E5FCD00ED48DA /* FormDataSender.swift */,
+				D456BEC3242EB54B006D9965 /* SegueHandler.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		D48BF07F242E342900F43C57 = {
@@ -157,7 +171,6 @@
 				D48BF084242E342900F43C57 /* Sources */,
 				D48BF085242E342900F43C57 /* Frameworks */,
 				D48BF086242E342900F43C57 /* Resources */,
-				A4C969C396306D1ED1A32A7F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,23 +229,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A4C969C396306D1ED1A32A7F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Expo/Pods-Expo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B70203BBD9FB85C4DB7B8512 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,8 +260,10 @@
 			files = (
 				D48BF090242E342900F43C57 /* LogInViewController.swift in Sources */,
 				D470C056242E630200ED48DA /* LogIn.swift in Sources */,
-				D470C058242E6EC100ED48DA /* UIButtonExtrnsion.swift in Sources */,
+				D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */,
+				D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */,
 				D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */,
+				D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */,
 				D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */,
 				D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */,
 				D48BF08E242E342900F43C57 /* SceneDelegate.swift in Sources */,
@@ -416,6 +414,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9LY79WQUU9;
 				INFOPLIST_FILE = Expo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -435,6 +434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9LY79WQUU9;
 				INFOPLIST_FILE = Expo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

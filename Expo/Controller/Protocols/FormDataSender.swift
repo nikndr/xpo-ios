@@ -9,5 +9,9 @@
 import Foundation
 
 protocol FormDataSender {
+    /// Validate that each text field was willed with data
     var allFieldsFilled: Bool { get }
+
+    /// Each implementer mush provide custom behavior for form validation
+    func manageTextFieldEditing()
 }

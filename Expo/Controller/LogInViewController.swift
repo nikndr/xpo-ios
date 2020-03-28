@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, FormDataSender {
+class LogInViewController: AuthenticationViewController, FormDataSender {
     // MARK: - Outlets
 
     @IBOutlet var usernameTextField: UITextField!
@@ -25,36 +25,8 @@ class LogInViewController: UIViewController, FormDataSender {
         logIn()
     }
 
-    // MARK: - Gestures
-
-    func registerGestures() {
-        let tapGestureBackground = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
-        view.addGestureRecognizer(tapGestureBackground)
-    }
-
-    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func createAccountButtonPressed(_ sender: UIButton) {
         view.endEditing(true)
-    }
-
-    // MARK: - Notifications
-
-    func registerNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if view.frame.origin.y == 0 {
-                view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if view.frame.origin.y != 0 {
-            view.frame.origin.y = 0
-        }
     }
 
     // MARK: - Lifecycle methods
@@ -72,10 +44,23 @@ class LogInViewController: UIViewController, FormDataSender {
         manageTextFieldEditing()
     }
 
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .createNewAccount:
+            unregisterNotifications()
+            let destinationVC = segue.destination as! SignUpViewController
+            destinationVC.sourceViewController = self
+            destinationVC.registerNotifications()
+        }
+    }
+
     // MARK: - Text field validation
 
     func manageTextFieldEditing() {
-        [usernameTextField, passwordTextField].forEach { $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged) }
+        [usernameTextField, passwordTextField]
+            .forEach { $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged) }
     }
 
     @objc func editingChanged(_ textField: UITextField) {
@@ -95,16 +80,8 @@ class LogInViewController: UIViewController, FormDataSender {
     }
 }
 
-// MARK: - UITextFieldDelegate conformation
-
-extension LogInViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
-            nextResponder.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        return false
+extension LogInViewController: SegueHandler {
+    enum SegueIdentifier: String {
+        case createNewAccount
     }
 }

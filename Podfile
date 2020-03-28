@@ -6,6 +6,6 @@ target 'Expo' do
   use_frameworks!
 
   # Pods for Expo
-  pod 'Alamofire', '~> 5.0' # а хулі нєт
+#  pod 'Alamofire', '~> 5.0' # а хулі нєт
 #  pod 'RealmSwift' # поки і правда нєт
 end

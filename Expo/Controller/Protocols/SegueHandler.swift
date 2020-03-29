@@ -13,8 +13,7 @@ protocol SegueHandler {
 }
 
 extension SegueHandler where Self: UIViewController, SegueIdentifier.RawValue == String {
-    func performSegueWithIdentifier(segueIdentifier: SegueIdentifier,
-                                    sender: AnyObject?) {
+    func performSegue(withIdentifier segueIdentifier: SegueIdentifier, sender: AnyObject?) {
         performSegue(withIdentifier: segueIdentifier.rawValue, sender: sender)
     }
 

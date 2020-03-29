@@ -8,10 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		67F85D491437577F38FBADF3 /* Pods_Expo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */; };
+		D440E25C242FDA7A00F8B986 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E25B242FDA7A00F8B986 /* EndPointType.swift */; };
+		D440E25E242FDB3800F8B986 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E25D242FDB3800F8B986 /* HTTPMethod.swift */; };
+		D440E261242FDBCF00F8B986 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E260242FDBCF00F8B986 /* HTTPTask.swift */; };
+		D440E264242FDC7800F8B986 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E263242FDC7800F8B986 /* ParameterEncoding.swift */; };
+		D440E266242FDDFE00F8B986 /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E265242FDDFE00F8B986 /* URLParameterEncoder.swift */; };
+		D440E268242FE09E00F8B986 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E267242FE09E00F8B986 /* JSONParameterEncoder.swift */; };
+		D440E26A242FE18F00F8B986 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E269242FE18F00F8B986 /* NetworkRouter.swift */; };
+		D440E26C242FE2E500F8B986 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E26B242FE2E500F8B986 /* Router.swift */; };
+		D440E26E242FECFA00F8B986 /* Expo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E26D242FECFA00F8B986 /* Expo.swift */; };
+		D440E270242FF14E00F8B986 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E26F242FF14E00F8B986 /* NetworkManager.swift */; };
+		D440E272242FFD9300F8B986 /* ExpoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E271242FFD9300F8B986 /* ExpoApi.swift */; };
+		D440E2742430001800F8B986 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E2732430001800F8B986 /* ARModel.swift */; };
+		D440E27924311BAC00F8B986 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E27824311BAC00F8B986 /* MenuViewController.swift */; };
+		D440E27B24311BCB00F8B986 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E27A24311BCB00F8B986 /* ProfileViewController.swift */; };
+		D440E27D24311C3500F8B986 /* MyExposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E27C24311C3500F8B986 /* MyExposViewController.swift */; };
+		D440E28224311EE100F8B986 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E28124311EE100F8B986 /* MainScreenViewController.swift */; };
+		D440E28424311F2B00F8B986 /* ExpoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E28324311F2B00F8B986 /* ExpoListTableViewController.swift */; };
+		D440E28724311F6200F8B986 /* ExpoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E28624311F6200F8B986 /* ExpoTableViewCell.swift */; };
+		D440E28A24312C0500F8B986 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E28924312C0500F8B986 /* UIImageViewExtension.swift */; };
 		D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E6C92242E40460082A784 /* SignUpViewController.swift */; };
 		D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D456BEC3242EB54B006D9965 /* SegueHandler.swift */; };
 		D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C053242E5FCD00ED48DA /* FormDataSender.swift */; };
-		D470C056242E630200ED48DA /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C055242E630200ED48DA /* LogIn.swift */; };
+		D470C056242E630200ED48DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C055242E630200ED48DA /* User.swift */; };
 		D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C057242E6EC100ED48DA /* UIButtonExtension.swift */; };
 		D470C05C242E7ECF00ED48DA /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D470C05B242E7ECF00ED48DA /* .gitignore */; };
 		D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */; };
@@ -25,10 +44,29 @@
 
 /* Begin PBXFileReference section */
 		D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expo.release.xcconfig"; path = "Target Support Files/Pods-Expo/Pods-Expo.release.xcconfig"; sourceTree = "<group>"; };
+		D440E25B242FDA7A00F8B986 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		D440E25D242FDB3800F8B986 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		D440E260242FDBCF00F8B986 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		D440E263242FDC7800F8B986 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		D440E265242FDDFE00F8B986 /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		D440E267242FE09E00F8B986 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		D440E269242FE18F00F8B986 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		D440E26B242FE2E500F8B986 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		D440E26D242FECFA00F8B986 /* Expo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expo.swift; sourceTree = "<group>"; };
+		D440E26F242FF14E00F8B986 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D440E271242FFD9300F8B986 /* ExpoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoApi.swift; sourceTree = "<group>"; };
+		D440E2732430001800F8B986 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
+		D440E27824311BAC00F8B986 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		D440E27A24311BCB00F8B986 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D440E27C24311C3500F8B986 /* MyExposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExposViewController.swift; sourceTree = "<group>"; };
+		D440E28124311EE100F8B986 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		D440E28324311F2B00F8B986 /* ExpoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoListTableViewController.swift; sourceTree = "<group>"; };
+		D440E28624311F6200F8B986 /* ExpoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoTableViewCell.swift; sourceTree = "<group>"; };
+		D440E28924312C0500F8B986 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		D44E6C92242E40460082A784 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D456BEC3242EB54B006D9965 /* SegueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandler.swift; sourceTree = "<group>"; };
 		D470C053242E5FCD00ED48DA /* FormDataSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataSender.swift; sourceTree = "<group>"; };
-		D470C055242E630200ED48DA /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		D470C055242E630200ED48DA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D470C057242E6EC100ED48DA /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		D470C05B242E7ECF00ED48DA /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -73,9 +111,97 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D440E257242FD97E00F8B986 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				D440E271242FFD9300F8B986 /* ExpoApi.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		D440E258242FD98F00F8B986 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D440E26F242FF14E00F8B986 /* NetworkManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D440E259242FD99400F8B986 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D440E25B242FDA7A00F8B986 /* EndPointType.swift */,
+				D440E25D242FDB3800F8B986 /* HTTPMethod.swift */,
+				D440E260242FDBCF00F8B986 /* HTTPTask.swift */,
+				D440E269242FE18F00F8B986 /* NetworkRouter.swift */,
+				D440E26B242FE2E500F8B986 /* Router.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D440E25A242FD99A00F8B986 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				D440E263242FDC7800F8B986 /* ParameterEncoding.swift */,
+				D440E265242FDDFE00F8B986 /* URLParameterEncoder.swift */,
+				D440E267242FE09E00F8B986 /* JSONParameterEncoder.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		D440E27624311B8400F8B986 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D48BF08F242E342900F43C57 /* LogInViewController.swift */,
+				D44E6C92242E40460082A784 /* SignUpViewController.swift */,
+				D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D440E27724311B8F00F8B986 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D440E27824311BAC00F8B986 /* MenuViewController.swift */,
+				D440E27A24311BCB00F8B986 /* ProfileViewController.swift */,
+				D440E27C24311C3500F8B986 /* MyExposViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		D440E28024311E9400F8B986 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D440E28124311EE100F8B986 /* MainScreenViewController.swift */,
+				D440E28324311F2B00F8B986 /* ExpoListTableViewController.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		D440E28524311F4A00F8B986 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D440E28624311F6200F8B986 /* ExpoTableViewCell.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		D440E28824311F7300F8B986 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D48BF091242E342900F43C57 /* Main.storyboard */,
+				D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D44E6C8D242E3FB90082A784 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D440E257242FD97E00F8B986 /* EndPoint */,
+				D440E258242FD98F00F8B986 /* Manager */,
+				D440E259242FD99400F8B986 /* Service */,
+				D440E25A242FD99A00F8B986 /* Encoding */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -84,9 +210,9 @@
 			isa = PBXGroup;
 			children = (
 				D456BEC2242EB536006D9965 /* Protocols */,
-				D48BF08F242E342900F43C57 /* LogInViewController.swift */,
-				D44E6C92242E40460082A784 /* SignUpViewController.swift */,
-				D470C05D242EA93A00ED48DA /* AuthenticationViewController.swift */,
+				D440E27724311B8F00F8B986 /* Menu */,
+				D440E27624311B8400F8B986 /* Authentication */,
+				D440E28024311E9400F8B986 /* MainScreen */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -94,7 +220,9 @@
 		D44E6C8F242E3FC90082A784 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D470C055242E630200ED48DA /* LogIn.swift */,
+				D470C055242E630200ED48DA /* User.swift */,
+				D440E26D242FECFA00F8B986 /* Expo.swift */,
+				D440E2732430001800F8B986 /* ARModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,9 +230,9 @@
 		D44E6C90242E3FCE0082A784 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D48BF091242E342900F43C57 /* Main.storyboard */,
-				D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */,
+				D440E28524311F4A00F8B986 /* MainScreen */,
 				D470C057242E6EC100ED48DA /* UIButtonExtension.swift */,
+				D440E28924312C0500F8B986 /* UIImageViewExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -148,6 +276,7 @@
 		D48BF08A242E342900F43C57 /* Expo */ = {
 			isa = PBXGroup;
 			children = (
+				D440E28824311F7300F8B986 /* Supporting Files */,
 				D44E6C91242E3FDF0082A784 /* AppFiles */,
 				D44E6C8F242E3FC90082A784 /* Model */,
 				D44E6C90242E3FCE0082A784 /* View */,
@@ -258,14 +387,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D440E270242FF14E00F8B986 /* NetworkManager.swift in Sources */,
+				D440E28724311F6200F8B986 /* ExpoTableViewCell.swift in Sources */,
+				D440E261242FDBCF00F8B986 /* HTTPTask.swift in Sources */,
+				D440E28224311EE100F8B986 /* MainScreenViewController.swift in Sources */,
 				D48BF090242E342900F43C57 /* LogInViewController.swift in Sources */,
-				D470C056242E630200ED48DA /* LogIn.swift in Sources */,
+				D470C056242E630200ED48DA /* User.swift in Sources */,
 				D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */,
+				D440E266242FDDFE00F8B986 /* URLParameterEncoder.swift in Sources */,
+				D440E268242FE09E00F8B986 /* JSONParameterEncoder.swift in Sources */,
+				D440E25E242FDB3800F8B986 /* HTTPMethod.swift in Sources */,
+				D440E26E242FECFA00F8B986 /* Expo.swift in Sources */,
 				D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */,
+				D440E28424311F2B00F8B986 /* ExpoListTableViewController.swift in Sources */,
 				D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */,
+				D440E26A242FE18F00F8B986 /* NetworkRouter.swift in Sources */,
+				D440E2742430001800F8B986 /* ARModel.swift in Sources */,
+				D440E26C242FE2E500F8B986 /* Router.swift in Sources */,
+				D440E264242FDC7800F8B986 /* ParameterEncoding.swift in Sources */,
+				D440E27B24311BCB00F8B986 /* ProfileViewController.swift in Sources */,
+				D440E27924311BAC00F8B986 /* MenuViewController.swift in Sources */,
+				D440E272242FFD9300F8B986 /* ExpoApi.swift in Sources */,
+				D440E27D24311C3500F8B986 /* MyExposViewController.swift in Sources */,
+				D440E28A24312C0500F8B986 /* UIImageViewExtension.swift in Sources */,
 				D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */,
 				D470C054242E5FCD00ED48DA /* FormDataSender.swift in Sources */,
 				D44E6C93242E40460082A784 /* SignUpViewController.swift in Sources */,
+				D440E25C242FDA7A00F8B986 /* EndPointType.swift in Sources */,
 				D48BF08E242E342900F43C57 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

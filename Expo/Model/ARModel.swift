@@ -13,22 +13,40 @@ struct ARModel: Identifiable {
     var markerURL: String
     var modelURL: String
 
-    static var models: [ARModel] = [
-        ARModel(id: 0, markerURL: "", modelURL: ""),
-        ARModel(id: 1, markerURL: "", modelURL: ""),
-        ARModel(id: 2, markerURL: "", modelURL: ""),
-        ARModel(id: 3, markerURL: "", modelURL: ""),
-    ]
+    init(id: Int, markerURL: String, modelURL: String) {
+        self.id = id
+        self.markerURL = markerURL
+        self.modelURL = modelURL
+    }
+
+    init(markerURL: String, modelURL: String) {
+        self.id = ARModel.nextID
+        self.markerURL = markerURL
+        self.modelURL = modelURL
+    }
 }
 
-extension ARModel: Hashable {
+extension ARModel: Hashable, Equatable {
     static func ==(lhs: ARModel, rhs: ARModel) -> Bool {
         lhs.id == rhs.id
     }
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-        hasher.combine(markerURL)
-        hasher.combine(modelURL)
     }
+}
+
+// MARK: - Database xDxDxD
+
+extension ARModel {
+    static var nextID: Int {
+        models.count
+    }
+
+    static var models: [ARModel] = [
+        ARModel(id: 0, markerURL: "", modelURL: ""),
+        ARModel(id: 1, markerURL: "", modelURL: ""),
+        ARModel(id: 2, markerURL: "", modelURL: ""),
+        ARModel(id: 3, markerURL: "", modelURL: ""),
+    ]
 }

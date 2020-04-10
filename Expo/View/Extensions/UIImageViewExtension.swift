@@ -37,7 +37,7 @@ extension UIImageView {
     }
 
     /// Asynchronous downloading and setting the image from the provided urlString
-    func setImageFrom(_ urlString: String, completion: (() -> Void)? = nil) {
+    func setImageFrom(url urlString: String, completion: (() -> Void)? = nil) {
         guard let url = URL(string: urlString) else { return }
 
         let session = URLSession(configuration: .default)

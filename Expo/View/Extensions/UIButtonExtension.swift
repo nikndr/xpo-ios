@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIButton {
+    
     static let enabledAlpha: CGFloat = 1.0
     static let disabledAlpha: CGFloat = 0.7
     

@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  AuthChoiceNavigationController.swift
 //  Expo
 //
 //  Created by Nikandr Marhal on 10.04.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class AuthChoiceNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

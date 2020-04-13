@@ -1,5 +1,5 @@
 //
-//  HTTPTask.swift
+//  Errors.swift
 //  Expo
 //
 //  Created by Nikandr Marhal on 13.04.2020.

@@ -9,6 +9,10 @@
 import UIKit
 
 class LogInViewController: AuthenticationViewController, FormDataSender {
+    // MARK: - Properties
+
+    var session = AppSession.shared
+
     // MARK: - Outlets
 
     @IBOutlet var usernameTextField: UITextField!
@@ -23,12 +27,6 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
     @IBAction func logInButtonPressed(_ sender: UIButton) {
         logIn()
-        performSegue(withIdentifier: .logIn, sender: self)
-    }
-
-    @IBAction func createAccountButtonPressed(_ sender: UIButton) {
-        view.endEditing(true)
-        performSegue(withIdentifier: .createAccount, sender: self)
     }
 
     // MARK: - Lifecycle methods
@@ -40,7 +38,9 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
         usernameTextField.delegate = self
         passwordTextField.delegate = self
-//        logInButton.setEnabled(false)
+        logInButton.setEnabled(true)
+
+        setUpUI()
 
         manageTextFieldEditing()
     }
@@ -49,12 +49,15 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
-        case .createAccount:
-            let destinationVC = segue.destination as! SignUpViewController
-            destinationVC.sourceViewController = self
         case .logIn:
-            break
+            break 
         }
+    }
+
+    // MARK: - UI preparation
+
+    func setUpUI() {
+        logInButton.makeRoundedCorners()
     }
 
     // MARK: - Text field validation
@@ -76,10 +79,18 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
     func logIn() {
         if allFieldsFilled {
-            print("logIn()")
-            // call to api
-            // receive response with User object
-            
+            session.logIn(withUsername: usernameTextField.text!, password: passwordTextField.text!) { result in
+                switch result {
+                case .success(_):
+                    let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
+                    self.view.window?.rootViewController = mainScreenVC
+                    self.view.window?.makeKeyAndVisible()
+                case .failure(let error):
+                    let alert = UIAlertController(title: "Login failed", message: error.rawValue, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
 }
@@ -88,7 +99,6 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
 extension LogInViewController: SegueHandler {
     enum SegueIdentifier: String {
-        case createAccount
         case logIn
     }
 }

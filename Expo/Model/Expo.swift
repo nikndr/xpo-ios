@@ -8,30 +8,46 @@
 
 import Foundation
 
-typealias ExpoLike = [User: Bool]
+class Expo: Identifiable {
+    // MARK: - Maintaining expo load state
 
-struct Expo: Identifiable {
+    var downloaded = false
+
+    // MARK: - Properties
+
     var id: Int
     var organizer: User
     var name: String
     var description: String
-    var imageURL: String
+    var imageURL: URL
     var startTime: Date
     var endTime: Date
     var locationName: String
     var viewsCount = Int()
-    var likes = ExpoLike()
+    var likesCount = Int()
     var models: [ARModel]
 
-    mutating func increaseViewCount() {
+    // MARK: - User interaction logic
+
+    func increaseViewCount() {
         viewsCount += 1
     }
 
-    mutating func likedBy(user: User) {
-        likes[user] = true
+    func increaseLikeCount() {
+        likesCount += 1
+    }
+    
+    func decreaseLikeCount() {
+        likesCount -= 1
     }
 
-    init(id: Int, organizer: User, name: String, description: String, imageURL: String, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
+    // MARK: - AR Model loading
+
+    func downloadContents() {}
+
+    // MARK: - Initialization
+
+    init(id: Int, organizer: User, name: String, description: String, imageURL: URL, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
         self.id = id
         self.organizer = organizer
         self.name = name
@@ -43,7 +59,7 @@ struct Expo: Identifiable {
         self.models = models
     }
 
-    init(organizer: User, name: String, description: String, imageURL: String, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
+    init(organizer: User, name: String, description: String, imageURL: URL, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
         self.id = Expo.nextID
         self.organizer = organizer
         self.name = name
@@ -53,14 +69,6 @@ struct Expo: Identifiable {
         self.endTime = endTime
         self.locationName = locationName
         self.models = models
-    }
-}
-
-// MARK: - Maintaining expo state
-
-extension Expo {
-    enum State {
-        
     }
 }
 
@@ -84,9 +92,9 @@ extension Expo {
     }
 
     static var expos: [Expo] = [
-        Expo(id: 0, organizer: User.users[1], name: "Expo 1", description: "Very good expo", imageURL: "https://nova.lc/wp-content/uploads/2020/01/dubai-.jpg", startTime: Date(), endTime: Date(), locationName: "Apple Park", models: ARModel.models),
-        Expo(id: 1, organizer: User.users[2], name: "Expo 2", description: "Very good expo, but another", imageURL: "https://i.imgur.com/qcVM19M.jpg", startTime: Date(), endTime: Date(), locationName: "Kyiv", models: ARModel.models),
-        Expo(id: 2, organizer: User.users[1], name: "Expo 3", description: "Please don't visit this expo", imageURL: "https://i.imgur.com/lBizl0j.jpg", startTime: Date(), endTime: Date(), locationName: "Cherkasy", models: ARModel.models),
+        Expo(id: 0, organizer: User.users[1], name: "Expo 1", description: "Very good expo", imageURL: URL(string: "https://nova.lc/wp-content/uploads/2020/01/dubai-.jpg")!, startTime: Date(), endTime: Date(), locationName: "Apple Park", models: ARModel.models),
+        Expo(id: 1, organizer: User.users[2], name: "Expo 2", description: "Very good expo, but another", imageURL: URL(string: "https://i.imgur.com/qcVM19M.jpg")!, startTime: Date(), endTime: Date(), locationName: "Kyiv", models: ARModel.models),
+        Expo(id: 2, organizer: User.users[1], name: "Expo 3", description: "Please don't visit this expo", imageURL: URL(string: "https://i.imgur.com/lBizl0j.jpg")!, startTime: Date(), endTime: Date(), locationName: "Cherkasy", models: ARModel.models),
     ]
 
     static func add(_ expo: Expo) {

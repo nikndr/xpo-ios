@@ -8,23 +8,177 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class ProfileViewController: UIViewController, FormDataSender {
+    // MARK: - Properties
+    
+    var user: User!
+    var passwordFieldEdited = false
+    var usernameFieldEdited = false
+    
+    var userFieldsFilled: Bool {
+        !(fullNameTextField.text?.isEmpty ?? true) && !(usernameTextField.text?.isEmpty ?? true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var passwordFieldFilled: Bool {
+        !(passwordTextField.text?.isEmpty ?? true)
     }
-    */
+    
+    var allFieldsFilled: Bool {
+        userFieldsFilled && passwordFieldFilled
+    }
+    
+    var isNewUsernameAvailable: Bool {
+        guard let username = usernameTextField.text else { return false }
+        return User.isUsernameAvailable(username) || username == user.username
+    }
+    
+    // MARK: - Outlets
+    
+    @IBOutlet var fullNameTextField: UITextField!
+    @IBOutlet var usernameTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var nameErrorLabel: UILabel!
+    @IBOutlet var usernameErrorLabel: UILabel!
+    @IBOutlet var passwordErrorLabel: UILabel!
+    @IBOutlet var saveButton: UIButton!
+    
+    // MARK: - Actions
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        user.name = fullNameTextField.text!
+        user.username = usernameFieldEdited ? usernameTextField.text! : user.username
+        user.password = passwordFieldEdited ? passwordTextField.text! : user.password
+        User.update(user, name: user.name,
+                    username: user.username,
+                    password: user.password)
+        
+        let alert = UIAlertController(title: "Saved!", message: "You will see your updated profile immediately.", preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
 
+        let when = DispatchTime.now() + 1.5
+        DispatchQueue.main.asyncAfter(deadline: when) {
+          alert.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - Lifecycle methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUIElements()
+        manageTextFieldEditing()
+    }
+    
+    // MARK: - UI configuration
+    
+    /// Put your custom UI code here:
+    /// rounded corners, shadows, corders etc.
+    func configureUIElements() {
+        saveButton.makeRoundedCorners()
+        saveButton.setEnabled(false)
+        
+        fullNameTextField.text = user.name
+        usernameTextField.text = user.username
+        
+        [nameErrorLabel, usernameErrorLabel, passwordErrorLabel].forEach { hide(errorLabel: $0) }
+    }
+    
+    func showErrorLabel(for textField: UITextField, withMessage message: String) {
+        switch textField {
+        case fullNameTextField:
+            show(errorLabel: nameErrorLabel, withText: message)
+        case usernameTextField:
+            show(errorLabel: usernameErrorLabel, withText: message)
+        case passwordTextField:
+            show(errorLabel: passwordErrorLabel, withText: message)
+        default:
+            break
+        }
+    }
+    
+    func hideErrorLabel(for textField: UITextField) {
+        switch textField {
+        case fullNameTextField:
+            hide(errorLabel: nameErrorLabel)
+        case usernameTextField:
+            hide(errorLabel: usernameErrorLabel)
+        case passwordTextField:
+            hide(errorLabel: passwordErrorLabel)
+        default:
+            break
+        }
+    }
+    
+    func show(errorLabel: UILabel, withText text: String) {
+        errorLabel.text = text
+        errorLabel.isHidden = false
+    }
+    
+    func hide(errorLabel: UILabel) {
+        errorLabel.text = String()
+        errorLabel.isHidden = true
+    }
+    
+    // MARK: - Field data validation
+    
+    func isUsernameValid(_ username: String) -> Bool {
+        username.count > 2 && !username.contains(" ")
+    }
+    
+    func manageTextFieldEditing() {
+        [usernameTextField, fullNameTextField, passwordTextField]
+            .forEach { $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged) }
+    }
+    
+    @objc func editingChanged(_ textField: UITextField) {
+        registerEdit(of: textField)
+        eraseSpaces(from: textField)
+        restrictEmptyText(for: textField)
+        
+        if usernameFieldEdited {
+            validateUsername()
+        } else {
+            saveButton.setEnabled(userFieldsFilled)
+        }
+    }
+    
+    func registerEdit(of textField: UITextField) {
+        switch textField {
+        case usernameTextField:
+            usernameFieldEdited = true
+        case passwordTextField:
+            passwordFieldEdited = true
+        default:
+            break
+        }
+    }
+    
+    func eraseSpaces(from textField: UITextField) {
+        if textField.text?.count == 1, textField.text?.first == " " {
+            textField.text = ""
+            return
+        }
+    }
+    
+    func restrictEmptyText(for textField: UITextField) {
+        if textField.text?.count == 0 {
+            showErrorLabel(for: textField, withMessage: "This field cannot be empty")
+        } else {
+            hideErrorLabel(for: textField)
+        }
+    }
+    
+    func validateUsername() {
+        if isNewUsernameAvailable {
+            if isUsernameValid(usernameTextField.text!) {
+                hide(errorLabel: usernameErrorLabel)
+                saveButton.setEnabled(userFieldsFilled)
+            } else {
+                show(errorLabel: usernameErrorLabel, withText: "Must be at least 3 characters long and have no spaces")
+            }
+        } else {
+            show(errorLabel: usernameErrorLabel, withText: "Username unavailable")
+            saveButton.setEnabled(false)
+        }
+    }
 }

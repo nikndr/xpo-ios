@@ -9,32 +9,54 @@
 import Alamofire
 
 protocol EndPointType: URLRequestConvertible {
+    var baseURL: URL { get }
     var method: HTTPMethod { get }
     var path: String { get }
-//    var parameters: Parameters? { get }
     var task: HTTPTask { get }
 }
 
 extension URLRequestConvertible where Self: EndPointType {
-    /// Default implementation accepts and produces Content-Type: application/json
-    /// Override to provide custom behaviour
+    
+    var baseURL: URL {
+        guard let url = URL(string: K.Production.baseURL) else { fatalError("Base url cannot be loaded") }
+        return url
+    }
+    
     func asURLRequest() throws -> URLRequest {
-        let url = try K.Production.baseURL.asURL()
+        var request = URLRequest(url: baseURL.appendingPathComponent(path))
 
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        request.httpMethod = method.rawValue
+        request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
+        request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
 
-//        urlRequest.httpMethod = method.rawValue
-//        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
-//        urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-//
-//        if let parameters = parameters {
-//            do {
-//                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-//            } catch {
-//                throw AFError.parameterEncoderFailed(reason: .encoderFailed(error: error))
-//            }
-//        }
+        do {
+            switch task {
+            case .request:
+                break
+            case .requestWithParameters(let bodyParameters, let urlParameters):
+                try configureParameters(bodyParameters: bodyParameters?.parameters,
+                                        urlParameters: urlParameters?.parameters,
+                                        request: &request)
+            case .download, .upload:
+                fatalError("Not implemented")
+            }
 
-        return urlRequest
+            return request
+        } catch {
+            throw error
+        }
+    }
+
+    private func configureParameters(bodyParameters: Parameters?, urlParameters: Parameters?, request: inout URLRequest) throws {
+        do {
+            if let bodyParameters = bodyParameters {
+                try JSONParameterEncoder.encode(urlRequest: &request, with: bodyParameters)
+            }
+            if let urlParameters = urlParameters {
+                try URLParameterEncoder.encode(urlRequest: &request, with: urlParameters)
+            }
+        } catch {
+            throw error
+        }
     }
 }

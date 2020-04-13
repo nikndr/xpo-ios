@@ -9,9 +9,10 @@
 import UIKit
 
 class SignUpViewController: AuthenticationViewController, FormDataSender {
-    
-    weak var sourceViewController: LogInViewController?
-    
+    // MARK: - Properties
+
+    var session = AppSession.shared
+
     // MARK: - Outlets
 
     @IBOutlet var fullNameTextField: UITextField!
@@ -32,11 +33,6 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
         createAccount()
     }
 
-    @IBAction func alreadyHaveAccountButtonPressed(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)//(animated: true, completion: nil)
-//        dismiss(animated: true, completion: nil)
-    }
-
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
@@ -50,21 +46,28 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
         createAccountButton.setEnabled(false)
 
+        setUpUI()
+
         manageTextFieldEditing()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        sourceViewController = nil
     }
-    
+
     // MARK: - Navigation
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .createAccountAndLogIn:
-            #warning("Missing implementation")
-        }
+//        switch segueIdentifier(for: segue) {
+//        case .createAccountAndLogIn:
+//            #warning("Missing implementation")
+//        }
+    }
+
+    // MARK: - UI preparation
+
+    func setUpUI() {
+        createAccountButton.makeRoundedCorners()
     }
 
     // MARK: - Text field validation
@@ -86,13 +89,24 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
     func createAccount() {
         if allFieldsFilled {
-            print("createAccount()")
+            session.signUp(withName: fullNameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!, isOrganizer: organizerAccountSwitch.isOn) { result in
+                switch result {
+                case .success(_):
+                    let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
+                    self.view.window?.rootViewController = mainScreenVC
+                    self.view.window?.makeKeyAndVisible()
+                case .failure(let error):
+                    let alert = UIAlertController(title: "Sign up failed", message: error.rawValue, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
         }
     }
 }
 
-extension SignUpViewController: SegueHandler {
-    enum SegueIdentifier: String {
-        case createAccountAndLogIn
-    }
-}
+// extension SignUpViewController: SegueHandler {
+//    enum SegueIdentifier: String {
+//        case createAccountAndLogIn
+//    }
+// }

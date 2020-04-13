@@ -12,6 +12,8 @@ struct ARModel: Identifiable {
     var id: Int
     var markerURL: String
     var modelURL: String
+    var markerFilePath: String?
+    var modelFilePath: String?
 
     init(id: Int, markerURL: String, modelURL: String) {
         self.id = id

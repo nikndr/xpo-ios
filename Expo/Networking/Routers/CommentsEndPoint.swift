@@ -6,14 +6,59 @@
 //  Copyright © 2020 Nikandr Marhal. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 
-enum CommentsRouter: EndPointType {
+enum CommentsEndPoint {
     // MARK: - Endpoints
-    // MARK: - API Configuration
-    var method: HTTPMethod
-    
-    var path: String
-    
-    var parameters: Parameters?
+
+    case getAllComments(userID: Int?, expoID: Int)
+    case getComment(commentID: Int)
+    case createComment(userID: Int, expoID: Int, text: String)
+    case updateComment(commentID: Int, text: String)
+    case deleteComment(commentID: Int)
+}
+
+// MARK: - EndPointType
+
+extension CommentsEndPoint: EndPointType {
+    var method: HTTPMethod {
+        switch self {
+        case .getAllComments, .getComment:
+            return .get
+        case .createComment:
+            return .post
+        case .updateComment:
+            return .put
+        case .deleteComment:
+            return .delete
+        }
+    }
+
+    var path: String {
+        switch self {
+        case .getAllComments, .createComment:
+            return "/comment"
+        case .getComment(let commentID), .updateComment(let commentID, _), .deleteComment(let commentID):
+            return "/comment/\(commentID)"
+        }
+    }
+
+    var task: HTTPTask {
+        switch self {
+        case .getAllComments(let userID, let expoID):
+            let parameters: OptionalParameters = [.userID: userID,
+                                                  .expoID: expoID]
+            return .requestWithParameters(bodyParameters: nil, urlParameters: URLParameterEncoder.coalesce(parameters))
+        case .getComment, .deleteComment:
+            return .request
+        case .createComment(let userID, let expoID, let text):
+            return .requestWithParameters(bodyParameters: [.userID: userID,
+                                                           .expoID: expoID,
+                                                           .text: text],
+                                          urlParameters: nil)
+        case .updateComment(_, let text):
+            return .requestWithParameters(bodyParameters: [.text: text],
+                                          urlParameters: nil)
+        }
+    }
 }

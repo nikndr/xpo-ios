@@ -34,4 +34,8 @@ extension UIStoryboard {
     class func instantiateMainScreenTabBarController() -> MainScreenTabBarController {
         loadFromMain("MainScreenTabBarController") as! MainScreenTabBarController
     }
+    
+    class func instantiateAuthChoiceNavigationController() -> AuthChoiceNavigationController {
+        loadFromMain("AuthChoiceNavigationController") as! AuthChoiceNavigationController
+    }
 }

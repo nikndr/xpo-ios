@@ -6,16 +6,47 @@
 //  Copyright © 2020 Nikandr Marhal. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 
-enum UserRouter: EndPointType {
+enum UserEndPoint {
     // MARK: - Endpoints
-    case users
-    
-    // MARK: - API Configuration
-    var method: HTTPMethod
-    
-    var path: String
-    
-    var parameters: Parameters?
+
+    case getAllUsers
+    case getUser(login: String)
+    case updateUser(login: String, newLogin: String?, newName: String?, newPassword: String?)
+}
+
+// MARK: - EndPointType
+
+extension UserEndPoint: EndPointType {
+    var method: HTTPMethod {
+        switch self {
+        case .getAllUsers, .getUser:
+            return .get
+        case .updateUser:
+            return .post
+        }
+    }
+
+    var path: String {
+        switch self {
+        case .getAllUsers:
+            return "/users"
+        case .getUser(let login), .updateUser(let login, _, _, _):
+            return "/users/\(login)"
+        }
+    }
+
+    var task: HTTPTask {
+        switch self {
+        case .getAllUsers, .getUser:
+            return .request
+        case .updateUser(_, let newLogin, let newName, let newPassword):
+            let parameters: OptionalParameters = [.login: newLogin,
+                                                  .name: newName,
+                                                  .password: newPassword]
+            return .requestWithParameters(bodyParameters: JSONParameterEncoder.coalesce(parameters),
+                                          urlParameters: nil)
+        }
+    }
 }

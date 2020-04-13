@@ -9,22 +9,25 @@
 import UIKit
 
 class AuthChoiceNavigationController: UINavigationController {
-
+    
+    // MARK: - Properties
+    
+    // MARK: - Outlets
+    
+    // MARK: - Actions
+    
+    // MARK: - Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureUIElements()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - UI configuration
+    
+    /// Put your custom UI code here:
+    /// rounded corners, shadows, corders etc.
+    func configureUIElements() {
+        
     }
-    */
-
 }

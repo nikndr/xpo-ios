@@ -8,19 +8,41 @@
 
 import UIKit
 
+
+protocol TableDataReceiver {
+    func didSelectCell(withExpo expo: Expo)
+}
+
 class ExpoListTableViewController: UITableViewController {
+    
+    // MARK: - Properties
+    var delegate: TableDataReceiver?
+    
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.separatorColor = .clear
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        view.window?.rootViewController = self
+        view.window?.makeKeyAndVisible()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        (self.parent as! MainScreenViewController).expoTableChild = self
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (self.parent as! MainScreenViewController).expoTableChild = nil
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,21 +62,22 @@ class ExpoListTableViewController: UITableViewController {
             fatalError("Cell identifier not found: \(identifier)")
         }
         let expo = Expo.expos[indexPath.section]
-        fill(cell: cell, withContentsOf: expo)
+        fill(cell: cell, withDataOf: expo)
         draw(cell: cell)
-        
-
         return cell
     }
 
-    func fill(cell: ExpoTableViewCell, withContentsOf expo: Expo) {
+    func fill(cell: ExpoTableViewCell, withDataOf expo: Expo) {
         cell.title = expo.name
         cell.organizer = expo.organizer.name
-        cell.descriptionText = expo.description
-        cell.previewImageURL = expo.imageURL
+        cell.date = (startDate: expo.startTime, endDate: expo.endTime)
+        cell.previewImageURL = expo.imageURL.absoluteString
+        cell.viewCount = expo.viewsCount
+        cell.likeCount = expo.likesCount
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectCell(withExpo: Expo.expos[indexPath.section])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -77,26 +100,17 @@ class ExpoListTableViewController: UITableViewController {
     // MARK: - Graphics
     
     func draw(cell: ExpoTableViewCell) {
-        cell.backgroundColor = .clear
-        cell.layer.masksToBounds = false
-        cell.layer.shadowOpacity = Float(ExpoTableViewCell.Constants.shadowOpacity.rawValue)
-        cell.layer.shadowRadius = ExpoTableViewCell.Constants.shadowRadius.rawValue
-        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-        cell.layer.shadowColor = UIColor.black.cgColor
-        
-        
-        cell.contentView.backgroundColor = .white
-        cell.contentView.layer.cornerRadius = ExpoTableViewCell.Constants.cornerRadius.rawValue
+        cell.makeRoundedCorners(withRadius: ExpoTableViewCell.Constants.cornerRadius.rawValue, corners: .allCorners)
     }
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .expoDetails:
-            break
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segueIdentifier(for: segue) {
+//        case .expoDetails:
+//            break
+//        }
+//    }
 }
 
 // MARK: - Cell identifiers
@@ -109,8 +123,8 @@ extension ExpoListTableViewController {
 
 // MARK: - SegueHandler conformation
 
-extension ExpoListTableViewController: SegueHandler {
-    enum SegueIdentifier: String {
-        case expoDetails
-    }
-}
+//extension ExpoListTableViewController: SegueHandler {
+//    enum SegueIdentifier: String {
+//        case expoDetails
+//    }
+//}

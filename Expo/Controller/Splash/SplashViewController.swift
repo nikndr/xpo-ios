@@ -9,6 +9,9 @@
 import UIKit
 
 class SplashViewController: UIViewController {
+    
+    var session = AppSession.shared
+    
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +31,10 @@ class SplashViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
             self.activityIndicator.stopAnimating()
 
-            if UserDefaults.standard.bool(forKey: .loggedIn) {
-                // navigate to protected page
+            if case .loggedIn(_) = self.session.state {
+//                SceneDelegate.shared.rootViewController.showMainScreen()
             } else {
-                // navigate to login screen
+//                SceneDelegate.shared.rootViewController.showLogOut()
             }
         }
     }

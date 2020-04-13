@@ -51,3 +51,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+//extension SceneDelegate {
+//    static var shared: SceneDelegate {
+//        (UIApplication.shared.connectedScenes.first as! UIWindowScene).delegate as! SceneDelegate
+//    }
+//
+//    var rootViewController: RootViewController {
+//        window!.rootViewController as! RootViewController
+//    }
+//}

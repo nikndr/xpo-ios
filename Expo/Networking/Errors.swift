@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+enum NetworkError: String, Error {
+    case missingURL = "The URL of the request is missing"
+    case encodingFailed = "Encoding of parameters has failed"
+}

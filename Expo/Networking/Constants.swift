@@ -32,9 +32,9 @@ enum ContentType: String {
     case json = "application/json"
 }
 
-enum ParameterKeys: String {
+enum ParameterKeys: String, Hashable {
     // MARK: - Auth and User
-    case id, login, password, email, name
+    case login, password, email, name
     case createdAt = "created_at"
     case updatedAt = "updated_at"
     case superadminRole = "superadmin_role"
@@ -49,11 +49,15 @@ enum ParameterKeys: String {
     case endTime = "end_time"
     case locationName = "location_name"
     case expoID = "location_id"
+    case organizerID = "organizer_id"
+    case visitorID = "visiter_id"
     
     // MARK: - Comment
+    case commentID = "comment_id"
     case text
     
     // MARK: - Expo Model
+    case modelID
     case arModelURL = "ar_model_url"
     case markerURL = "marker_url"
 }

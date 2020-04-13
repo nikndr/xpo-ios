@@ -15,7 +15,7 @@ class ExpoTableViewCell: UITableViewCell {
     var previewImageURL: String? {
         didSet {
             guard let previewImageURL = previewImageURL else { return }
-            expoImage.setImageFrom(previewImageURL)
+            expoImage.setImageFrom(url: previewImageURL)
         }
     }
     
@@ -27,7 +27,6 @@ class ExpoTableViewCell: UITableViewCell {
     
     var title: String? {
         didSet {
-            print(title)
             expoNameLabel.text = title
         }
     }
@@ -38,9 +37,22 @@ class ExpoTableViewCell: UITableViewCell {
         }
     }
     
-    var descriptionText: String? {
+    var date: (startDate: Date?, endDate: Date?)? {
         didSet {
-            expoDescriptionLabel.text = descriptionText
+            guard let date = date, let startDate = date.startDate, let endDate = date.endDate else { return }
+            expoDateLabel.text = formatTimeInterval(startDate: startDate, endDate: endDate)
+        }
+    }
+    
+    var viewCount: Int? {
+        didSet {
+            viewCountLabel.text = "\(viewCount ?? 0)"
+        }
+    }
+    
+    var likeCount: Int? {
+        didSet {
+            likeCountLabel.text = "\(likeCount ?? 0)"
         }
     }
     
@@ -49,10 +61,14 @@ class ExpoTableViewCell: UITableViewCell {
     @IBOutlet weak var expoImage: UIImageView!
     @IBOutlet weak var expoNameLabel: UILabel!
     @IBOutlet weak var expoOrganizerLabel: UILabel!
-    @IBOutlet weak var expoDescriptionLabel: UILabel!
+    @IBOutlet weak var expoDateLabel: UILabel!
+    @IBOutlet weak var viewCountLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        expoDateLabel.numberOfLines = 0
+        expoDateLabel.sizeToFit()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

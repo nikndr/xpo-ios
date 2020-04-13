@@ -8,14 +8,16 @@
 
 import Alamofire
 
-enum AuthEndPoint: EndPointType {
+enum AuthEndPoint {
     // MARK: - Endpoints
 
     case login(login: String, password: String)
     case signup(login: String, email: String, password: String, name: String, isOrganizer: Bool)
+}
 
-    // MARK: - API Configuration
+// MARK: - EndPointType
 
+extension AuthEndPoint: EndPointType {
     var method: HTTPMethod {
         switch self {
         case .login, .signup:
@@ -32,17 +34,19 @@ enum AuthEndPoint: EndPointType {
         }
     }
 
-    var parameters: Parameters? {
+    var task: HTTPTask {
         switch self {
         case .login(let login, let password):
-            return [ParameterKeys.login.rawValue: login,
-                    ParameterKeys.password.rawValue: password]
+            return .requestWithParameters(bodyParameters: [.login: login,
+                                                           .password: password],
+                                          urlParameters: nil)
         case .signup(let login, let email, let password, let name, let isOrganizer):
-            return [ParameterKeys.login.rawValue: login,
-                    ParameterKeys.email.rawValue: email,
-                    ParameterKeys.password.rawValue: password,
-                    ParameterKeys.name.rawValue: name,
-                    ParameterKeys.organizerRole.rawValue: isOrganizer]
+            return .requestWithParameters(bodyParameters: [.login: login,
+                                                           .email: email,
+                                                           .password: password,
+                                                           .name: name,
+                                                           .organizerRole: isOrganizer],
+                                          urlParameters: nil)
         }
     }
 }

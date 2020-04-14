@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		67F85D491437577F38FBADF3 /* Pods_Expo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFE9F9A4217C60EB6836EC33 /* Pods_Expo.framework */; };
+		D41DA7BF2445B25A002EA632 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41DA7BE2445B25A002EA632 /* APIClient.swift */; };
+		D41DA7C12445DE8D002EA632 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41DA7C02445DE8D002EA632 /* UIAlertControllerExtension.swift */; };
+		D41DA7C324461732002EA632 /* UserToExpo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41DA7C224461732002EA632 /* UserToExpo.swift */; };
 		D42325EB2440D7B50037FB07 /* MyExpoListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42325EA2440D7B50037FB07 /* MyExpoListTableViewController.swift */; };
 		D440E26E242FECFA00F8B986 /* Expo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E26D242FECFA00F8B986 /* Expo.swift */; };
 		D440E2742430001800F8B986 /* ARModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D440E2732430001800F8B986 /* ARModel.swift */; };
@@ -44,6 +47,11 @@
 		D48BF093242E342900F43C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF091242E342900F43C57 /* Main.storyboard */; };
 		D48BF095242E342E00F43C57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48BF094242E342E00F43C57 /* Assets.xcassets */; };
 		D48BF098242E342E00F43C57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */; };
+		D4C81767244645F900A33505 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81766244645F900A33505 /* Comment.swift */; };
+		D4C817692446585300A33505 /* EditExpoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C817682446585300A33505 /* EditExpoViewController.swift */; };
+		D4C8176B2446586C00A33505 /* CreateExpoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */; };
+		D4C8176D244670E300A33505 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176C244670E300A33505 /* ARViewController.swift */; };
+		D4C8176F244670FD00A33505 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176E244670FD00A33505 /* CommentsViewController.swift */; };
 		D4DC5A6F2444D7D0005285D5 /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A6E2444D7D0005285D5 /* UserEndPoint.swift */; };
 		D4DC5A712444D7EA005285D5 /* ExpoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A702444D7EA005285D5 /* ExpoEndPoint.swift */; };
 		D4DC5A732444D844005285D5 /* CommentsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A722444D844005285D5 /* CommentsEndPoint.swift */; };
@@ -62,6 +70,9 @@
 
 /* Begin PBXFileReference section */
 		D017D3FCD9BDE450934CA987 /* Pods-Expo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expo.release.xcconfig"; path = "Target Support Files/Pods-Expo/Pods-Expo.release.xcconfig"; sourceTree = "<group>"; };
+		D41DA7BE2445B25A002EA632 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D41DA7C02445DE8D002EA632 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
+		D41DA7C224461732002EA632 /* UserToExpo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToExpo.swift; sourceTree = "<group>"; };
 		D42325EA2440D7B50037FB07 /* MyExpoListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExpoListTableViewController.swift; sourceTree = "<group>"; };
 		D440E26D242FECFA00F8B986 /* Expo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expo.swift; sourceTree = "<group>"; };
 		D440E2732430001800F8B986 /* ARModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARModel.swift; sourceTree = "<group>"; };
@@ -100,6 +111,11 @@
 		D48BF094242E342E00F43C57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48BF097242E342E00F43C57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48BF099242E342E00F43C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4C81766244645F900A33505 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		D4C817682446585300A33505 /* EditExpoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpoViewController.swift; sourceTree = "<group>"; };
+		D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExpoViewController.swift; sourceTree = "<group>"; };
+		D4C8176C244670E300A33505 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		D4C8176E244670FD00A33505 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		D4DC5A6E2444D7D0005285D5 /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
 		D4DC5A702444D7EA005285D5 /* ExpoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoEndPoint.swift; sourceTree = "<group>"; };
 		D4DC5A722444D844005285D5 /* CommentsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsEndPoint.swift; sourceTree = "<group>"; };
@@ -152,6 +168,8 @@
 			children = (
 				D440E27C24311C3500F8B986 /* MyExposViewController.swift */,
 				D42325EA2440D7B50037FB07 /* MyExpoListTableViewController.swift */,
+				D4C817682446585300A33505 /* EditExpoViewController.swift */,
+				D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */,
 			);
 			path = "My Expos";
 			sourceTree = "<group>";
@@ -244,6 +262,8 @@
 				D440E2732430001800F8B986 /* ARModel.swift */,
 				D450C163243E1B60009D93DD /* AppSession.swift */,
 				D450C173243FAEFC009D93DD /* Download.swift */,
+				D41DA7C224461732002EA632 /* UserToExpo.swift */,
+				D4C81766244645F900A33505 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +292,8 @@
 			isa = PBXGroup;
 			children = (
 				D450C16A243F57A0009D93DD /* ExpoViewController.swift */,
+				D4C8176C244670E300A33505 /* ARViewController.swift */,
+				D4C8176E244670FD00A33505 /* CommentsViewController.swift */,
 			);
 			path = Expo;
 			sourceTree = "<group>";
@@ -291,6 +313,7 @@
 				D440E28924312C0500F8B986 /* UIImageViewExtension.swift */,
 				D450C165243E6092009D93DD /* UIStoryboardExtension.swift */,
 				D450C171243F9D46009D93DD /* UIViewExtension.swift */,
+				D41DA7C02445DE8D002EA632 /* UIAlertControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -353,6 +376,7 @@
 				D4DC5A802444E5E4005285D5 /* HTTPTask.swift */,
 				D4DC5A822444E9E5005285D5 /* NetworkRouter.swift */,
 				D4DC5A842444EA8D005285D5 /* Router.swift */,
+				D41DA7BE2445B25A002EA632 /* APIClient.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -373,13 +397,13 @@
 				D4DC5A7C2444E070005285D5 /* Errors.swift */,
 				D4E6C80D2444C2E70067563D /* Constants.swift */,
 				D4DC5A6D2444D752005285D5 /* Service */,
-				D4E6C80F2444C3760067563D /* Routers */,
+				D4E6C80F2444C3760067563D /* EndPoints */,
 				D4DC5A762444DF1D005285D5 /* Encoding */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		D4E6C80F2444C3760067563D /* Routers */ = {
+		D4E6C80F2444C3760067563D /* EndPoints */ = {
 			isa = PBXGroup;
 			children = (
 				D4E6C8102444C37F0067563D /* AuthEndPoint.swift */,
@@ -388,7 +412,7 @@
 				D4DC5A722444D844005285D5 /* CommentsEndPoint.swift */,
 				D4DC5A742444D862005285D5 /* ExpoModelEndPoint.swift */,
 			);
-			path = Routers;
+			path = EndPoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -521,16 +545,22 @@
 				D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */,
 				D44DF6802432484700DC8BD2 /* SplashViewController.swift in Sources */,
 				D4DC5A752444D862005285D5 /* ExpoModelEndPoint.swift in Sources */,
+				D41DA7C324461732002EA632 /* UserToExpo.swift in Sources */,
 				D450C174243FAEFC009D93DD /* Download.swift in Sources */,
+				D4C8176B2446586C00A33505 /* CreateExpoViewController.swift in Sources */,
 				D440E26E242FECFA00F8B986 /* Expo.swift in Sources */,
 				D4DC5A852444EA8D005285D5 /* Router.swift in Sources */,
 				D450C166243E6092009D93DD /* UIStoryboardExtension.swift in Sources */,
 				D4DC5A832444E9E5005285D5 /* NetworkRouter.swift in Sources */,
 				D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */,
+				D4C817692446585300A33505 /* EditExpoViewController.swift in Sources */,
+				D41DA7C12445DE8D002EA632 /* UIAlertControllerExtension.swift in Sources */,
 				D440E28424311F2B00F8B986 /* ExpoListTableViewController.swift in Sources */,
 				D4DC5A782444DF3F005285D5 /* ParameterEncoder.swift in Sources */,
 				D48BF08C242E342900F43C57 /* AppDelegate.swift in Sources */,
 				D450C17C243FD04E009D93DD /* AuthChoiceNavigationController.swift in Sources */,
+				D41DA7BF2445B25A002EA632 /* APIClient.swift in Sources */,
+				D4C8176D244670E300A33505 /* ARViewController.swift in Sources */,
 				D450C16E243F8A97009D93DD /* DateFromatting.swift in Sources */,
 				D440E2742430001800F8B986 /* ARModel.swift in Sources */,
 				D450C160243E0D19009D93DD /* AuthChoiceViewController.swift in Sources */,
@@ -539,11 +569,13 @@
 				D450C164243E1B60009D93DD /* AppSession.swift in Sources */,
 				D450C168243E67B6009D93DD /* MainScreenTabBarController.swift in Sources */,
 				D4DC5A712444D7EA005285D5 /* ExpoEndPoint.swift in Sources */,
+				D4C81767244645F900A33505 /* Comment.swift in Sources */,
 				D440E27D24311C3500F8B986 /* MyExposViewController.swift in Sources */,
 				D440E28A24312C0500F8B986 /* UIImageViewExtension.swift in Sources */,
 				D4DC5A732444D844005285D5 /* CommentsEndPoint.swift in Sources */,
 				D450C179243FC520009D93DD /* ProfileTableViewCell.swift in Sources */,
 				D450C172243F9D46009D93DD /* UIViewExtension.swift in Sources */,
+				D4C8176F244670FD00A33505 /* CommentsViewController.swift in Sources */,
 				D4DC5A7D2444E070005285D5 /* Errors.swift in Sources */,
 				D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */,
 				D450C17E2440A5FF009D93DD /* ProfileViewController.swift in Sources */,

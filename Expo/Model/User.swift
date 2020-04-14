@@ -6,44 +6,57 @@
 //  Copyright © 2020 Nikandr Marhal. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
-class User: Identifiable {
+class User: Identifiable, Codable {
     let id: Int
     var name: String
-    var username: String
-    var password: String
+    var login: String
+    var email: String
     let isOrganizer: Bool
-    var likedExpos = [Expo]()
+    // Backend KEKS
+    let isSuperadmin: Bool
+    let isUser: Bool
+    let createdAt: Date
+    var updatedAt: Date
 
-    func like(_ expo: Expo) {
-        likedExpos += [expo]
-    }
-
-    func dislike(_ expo: Expo) {
-        guard let index = likedExpos.firstIndex(of: expo) else { return }
-        likedExpos.remove(at: index)
-    }
-
-    func likes(_ expo: Expo) -> Bool {
-        return likedExpos.contains(expo)
-    }
-
-    init(id: Int, name: String, username: String, password: String, isOrganizer: Bool) {
+    init(id: Int, name: String, username: String, isOrganizer: Bool, email: String) {
         self.id = id
         self.name = name
-        self.username = username
-        self.password = password
+        self.login = username
         self.isOrganizer = isOrganizer
+        self.email = email
+        self.isSuperadmin = false
+        self.isUser = true
+        self.createdAt = Date()
+        self.updatedAt = Date()
     }
 
-    /// Temporary init w/o backend
-    init(name: String, username: String, password: String, isOrganizer: Bool) {
-        self.id = User.nextID
-        self.name = name
-        self.username = username
-        self.password = password
-        self.isOrganizer = isOrganizer
+    enum UserCodingKeys: String, CodingKey {
+        case id
+        case name
+        case login
+        case email
+        case isOrganizer = "organizer_role"
+        case isSuperadmin = "superadmin_role"
+        case isUser = "user_role"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+    }
+
+    required init(from decoder: Decoder) throws {
+        let userContainer = try decoder.container(keyedBy: UserCodingKeys.self)
+
+        self.id = try userContainer.decode(Int.self, forKey: .id)
+        self.name = try userContainer.decode(String.self, forKey: .name)
+        self.login = try userContainer.decode(String.self, forKey: .login)
+        self.email = try userContainer.decode(String.self, forKey: .email)
+        self.isOrganizer = try userContainer.decode(Bool.self, forKey: .isOrganizer)
+        self.isSuperadmin = try userContainer.decode(Bool.self, forKey: .isSuperadmin)
+        self.isUser = try userContainer.decode(Bool.self, forKey: .isUser)
+        self.createdAt = try userContainer.decode(Date.self, forKey: .createdAt)
+        self.updatedAt = try userContainer.decode(Date.self, forKey: .updatedAt)
     }
 }
 
@@ -57,33 +70,24 @@ extension User: Hashable, Equatable {
     }
 }
 
-// MARK: - Database xDxDxD
+// MARK: - Accessing remote data
 
 extension User {
-    static var nextID: Int {
-        users.count
-    }
-
-    static var users: [User] = [User(id: 0, name: "John Appleseed", username: "john", password: "12345678", isOrganizer: true),
-                                User(id: 1, name: "Nikandr Marhal", username: "nikndr", password: "12345678", isOrganizer: false),
-                                User(id: 2, name: "Kyrylo Kundik", username: "kyrylo", password: "12345678", isOrganizer: true)]
-    static func add(_ user: User) {
-        users.append(user)
+    func getOrganizedExpos(completion: @escaping (Result<[Expo], AFError>) -> Void) {
+        APIClient.getAllExpos(organizerID: id, completion: completion)
     }
     
-    static func update(_ user: User, name: String, username: String, password: String) {
-        guard let user = users.filter({ $0.username == user.username }).first,
-            let index = users.firstIndex(of: user) else { return }
-        users[index].name = name
-        users[index].username = username
-        users[index].password = password
+    func visit(expoID: Int, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        APIClient.visit(userID: id, expoID: expoID, completion: completion)
     }
 
-    static func isUsernameAvailable(_ username: String) -> Bool {
-        users.allSatisfy { $0.username != username }
+    func like(_ expo: Expo, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        APIClient.like(userID: id, expoID: expo.id, completion: completion)
     }
 
-    static func getBy(username: String) -> User? {
-        users.filter { $0.username == username }.first
+    func dislike(_ expo: Expo) {}
+
+    func likes(_ expo: Expo) -> Bool {
+        false
     }
 }

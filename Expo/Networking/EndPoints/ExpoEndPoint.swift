@@ -11,13 +11,6 @@ import Alamofire
 enum ExpoEndPoint {
     // MARK: - Endpoints
 
-    // MARK: Likes and visits
-
-    case like(userID: Int, expoID: Int)
-    case visit(userID: Int, expoID: Int)
-
-    // MARK: Expo
-
     case getAllExpos(organizerID: Int?, visitorID: Int?)
     case getExpo(id: Int)
     case createExpo(name: String, description: String, imageURL: String, startTime: Date, endTime: Date, locationName: String, userID: Int)
@@ -38,7 +31,7 @@ extension ExpoEndPoint: EndPointType {
         switch self {
         case .getExpo, .getAllExpos:
             return .get
-        case .createExpo, .like, .visit:
+        case .createExpo:
             return .post
         case .updateExpo:
             return .put
@@ -49,10 +42,6 @@ extension ExpoEndPoint: EndPointType {
 
     var path: String {
         switch self {
-        case .like:
-            return "/like"
-        case .visit:
-            return "/visit"
         case .getAllExpos, .createExpo:
             return "/expos"
         case .getExpo(let id), .updateExpo(let id, _, _, _, _, _, _), .deleteExpo(let id):
@@ -62,19 +51,15 @@ extension ExpoEndPoint: EndPointType {
 
     var task: HTTPTask {
         switch self {
-        case .like(let userID, let expoID), .visit(let userID, let expoID):
-            return .requestWithParameters(bodyParameters: [.userID: userID,
-                                                           .expoID: expoID],
-                                          urlParameters: nil)
         case .getAllExpos(let organizerID, let visitorID):
             let parameters: OptionalParameters = [.organizerID: organizerID,
-                              .visitorID: visitorID]
-            return .requestWithParameters(bodyParameters: nil,
+                                                  .visitorID: visitorID]
+            return .requestWithParametersAndAuth(bodyParameters: nil,
                                           urlParameters: URLParameterEncoder.coalesce(parameters))
         case .getExpo:
-            return .request
+            return .requestWithAuth
         case .createExpo(let name, let description, let imageURL, let startTime, let endTime, let locationName, let userID):
-            return .requestWithParameters(bodyParameters: [.name: name,
+            return .requestWithParametersAndAuth(bodyParameters: [.name: name,
                                                            .description: description,
                                                            .imageURL: imageURL,
                                                            .startTime: startTime,
@@ -84,15 +69,15 @@ extension ExpoEndPoint: EndPointType {
                                           urlParameters: nil)
         case .updateExpo(_, let newName, let newDescription, let newImageURL, let newStartTime, let newEndTime, let newLocationName):
             let parameters: OptionalParameters = [.name: newName,
-                              .description: newDescription,
-                              .imageURL: newImageURL,
-                              .startTime: newStartTime,
-                              .endTime: newEndTime,
-                              .locationName: newLocationName]
-            return .requestWithParameters(bodyParameters: JSONParameterEncoder.coalesce(parameters),
+                                                  .description: newDescription,
+                                                  .imageURL: newImageURL,
+                                                  .startTime: newStartTime,
+                                                  .endTime: newEndTime,
+                                                  .locationName: newLocationName]
+            return .requestWithParametersAndAuth(bodyParameters: JSONParameterEncoder.coalesce(parameters),
                                           urlParameters: nil)
         case .deleteExpo:
-            return .request
+            return .requestWithAuth
         }
     }
 }

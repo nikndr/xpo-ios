@@ -28,24 +28,24 @@ extension AuthEndPoint: EndPointType {
     var path: String {
         switch self {
         case .login:
-            return "/login"
+            return "/auth/login"
         case .signup:
-            return "/signup"
+            return "/auth/signup"
         }
     }
 
     var task: HTTPTask {
         switch self {
         case .login(let login, let password):
-            return .requestWithParameters(bodyParameters: [.login: login,
-                                                           .password: password],
+            return .requestWithParameters(bodyParameters: [.user: [ParameterKeys.login.rawValue: login,
+                                                                   ParameterKeys.password.rawValue: password]],
                                           urlParameters: nil)
         case .signup(let login, let email, let password, let name, let isOrganizer):
-            return .requestWithParameters(bodyParameters: [.login: login,
-                                                           .email: email,
-                                                           .password: password,
-                                                           .name: name,
-                                                           .organizerRole: isOrganizer],
+            return .requestWithParameters(bodyParameters: [.user: [ParameterKeys.login.rawValue: login,
+                                                                   ParameterKeys.email.rawValue: email,
+                                                                   ParameterKeys.password.rawValue: password,
+                                                                   ParameterKeys.name.rawValue: name,
+                                                                   ParameterKeys.organizerRole.rawValue: isOrganizer]],
                                           urlParameters: nil)
         }
     }

@@ -38,10 +38,8 @@ class SettingsViewController: UITableViewController {
             guard case .loggedIn(let user) = AppSession.shared.state else { fatalError("юзер блядь де???") }
             let destination = segue.destination as! ProfileViewController
             destination.user = user
-        case .myExpo:
-            break // TODO: - navigate to MyExpo screen
-        case .logOut:
-            break // TODO: - remove?
+        default:
+            break
         }
     }
     
@@ -52,7 +50,7 @@ class SettingsViewController: UITableViewController {
         case StaticCells.editProfile.rawValue:
             performSegue(withIdentifier: .editProfile, sender: self)
         case StaticCells.myExpos.rawValue:
-            performSegue(withIdentifier: .myExpo, sender: self)
+            performSegue(withIdentifier: .myExpos, sender: self)
         case StaticCells.logOut.rawValue:
             AppSession.shared.logOut {
                 self.view.window?.rootViewController = UIStoryboard.instantiateAuthChoiceNavigationController()
@@ -79,7 +77,7 @@ class SettingsViewController: UITableViewController {
 extension SettingsViewController: SegueHandler {
     enum SegueIdentifier: String {
         case editProfile
-        case myExpo
+        case myExpos
         case logOut
     }
 }

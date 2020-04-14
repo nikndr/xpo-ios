@@ -12,7 +12,10 @@ typealias KeyedParameters = [ParameterKeys: Any]
 
 enum HTTPTask {
     case request
+    case requestWithAuth
     case requestWithParameters(bodyParameters: KeyedParameters?, urlParameters: KeyedParameters?)
+    case requestWithParametersAndHeaders(bodyParameters: KeyedParameters?, urlParameters: KeyedParameters?, headers: [HTTPHeader]?)
+    case requestWithParametersAndAuth(bodyParameters: KeyedParameters?, urlParameters: KeyedParameters?)
     case download(bodyParameters: KeyedParameters?, urlParameters: KeyedParameters?)
     case upload(bodyParameters: KeyedParameters?, urlParameters: KeyedParameters?)
 }

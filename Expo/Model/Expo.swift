@@ -6,69 +6,73 @@
 //  Copyright © 2020 Nikandr Marhal. All rights reserved.
 //
 
+import Alamofire
 import Foundation
 
-class Expo: Identifiable {
+class Expo: Identifiable, Codable {
+    // MARK: - Properties
+
+    var id: Int
+    var organizerID: Int
+    var name: String
+    var description: String
+    var imageURL: String
+    var startTime: Date
+    var endTime: Date
+    var locationName: String
+    var likesCount = Int()
+    var viewsCount = Int()
+    let createdAt: Date
+    var updatedAt: Date
+
     // MARK: - Maintaining expo load state
 
     var downloaded = false
 
-    // MARK: - Properties
-
-    var id: Int
-    var organizer: User
-    var name: String
-    var description: String
-    var imageURL: URL
-    var startTime: Date
-    var endTime: Date
-    var locationName: String
-    var viewsCount = Int()
-    var likesCount = Int()
-    var models: [ARModel]
-
     // MARK: - User interaction logic
 
-    func increaseViewCount() {
-        viewsCount += 1
-    }
+    func increaseViewCount() {}
 
-    func increaseLikeCount() {
-        likesCount += 1
-    }
-    
-    func decreaseLikeCount() {
-        likesCount -= 1
-    }
+    func increaseLikeCount() {}
+
+    func decreaseLikeCount() {}
 
     // MARK: - AR Model loading
 
     func downloadContents() {}
 
-    // MARK: - Initialization
+    // MARK: - Conformation to Codable
 
-    init(id: Int, organizer: User, name: String, description: String, imageURL: URL, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
-        self.id = id
-        self.organizer = organizer
-        self.name = name
-        self.description = description
-        self.imageURL = imageURL
-        self.startTime = startTime
-        self.endTime = endTime
-        self.locationName = locationName
-        self.models = models
+    enum ExpoCodingKeys: String, CodingKey {
+        case id
+        case organizerID = "user_id"
+        case name
+        case description
+        case imageURL = "image_url"
+        case startTime = "start_time"
+        case endTime = "end_time"
+        case locationName = "location_name"
+        case likesCount = "likes_count"
+        case viewsCount = "views_count"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 
-    init(organizer: User, name: String, description: String, imageURL: URL, startTime: Date, endTime: Date, locationName: String, models: [ARModel]) {
-        self.id = Expo.nextID
-        self.organizer = organizer
-        self.name = name
-        self.description = description
-        self.imageURL = imageURL
-        self.startTime = startTime
-        self.endTime = endTime
-        self.locationName = locationName
-        self.models = models
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ExpoCodingKeys.self)
+
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.organizerID = try container.decode(Int.self, forKey: .organizerID)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.imageURL = try container.decode(String.self, forKey: .imageURL)
+        self.startTime = try container.decode(Date.self, forKey: .startTime)
+        self.endTime = try container.decode(Date.self, forKey: .endTime)
+        self.locationName = try container.decode(String.self, forKey: .locationName)
+        self.likesCount = try container.decode(Int.self, forKey: .likesCount)
+        self.viewsCount = try container.decode(Int.self, forKey: .viewsCount)
+        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
 }
 
@@ -84,20 +88,18 @@ extension Expo: Hashable, Equatable {
     }
 }
 
-// MARK: - Database xDxDxDxD
+// MARK: - Accessing remote data
 
 extension Expo {
-    static var nextID: Int {
-        expos.count
+    static func getAllExpos(completion: @escaping (Result<[Expo], AFError>) -> Void) {
+        APIClient.getAllExpos(completion: completion)
     }
 
-    static var expos: [Expo] = [
-        Expo(id: 0, organizer: User.users[1], name: "Expo 1", description: "Very good expo", imageURL: URL(string: "https://nova.lc/wp-content/uploads/2020/01/dubai-.jpg")!, startTime: Date(), endTime: Date(), locationName: "Apple Park", models: ARModel.models),
-        Expo(id: 1, organizer: User.users[2], name: "Expo 2", description: "Very good expo, but another", imageURL: URL(string: "https://i.imgur.com/qcVM19M.jpg")!, startTime: Date(), endTime: Date(), locationName: "Kyiv", models: ARModel.models),
-        Expo(id: 2, organizer: User.users[1], name: "Expo 3", description: "Please don't visit this expo", imageURL: URL(string: "https://i.imgur.com/lBizl0j.jpg")!, startTime: Date(), endTime: Date(), locationName: "Cherkasy", models: ARModel.models),
-    ]
-
-    static func add(_ expo: Expo) {
-        expos += [expo]
+    func getOrganizer(completion: @escaping (Result<User, AFError>) -> Void) {
+        // TODO: API FIX
+    }
+    
+    func випіліца(completion: @escaping (Result<Expo, AFError>) -> Void) {
+        APIClient.deleteExpo(id: id, completion: completion)
     }
 }

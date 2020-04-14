@@ -40,7 +40,7 @@ class ExpoTableViewCell: UITableViewCell {
     var date: (startDate: Date?, endDate: Date?)? {
         didSet {
             guard let date = date, let startDate = date.startDate, let endDate = date.endDate else { return }
-            expoDateLabel.text = formatTimeInterval(startDate: startDate, endDate: endDate)
+            expoDateLabel.text = DateFormatter.formatTimeInterval(startDate: startDate, endDate: endDate)
         }
     }
     

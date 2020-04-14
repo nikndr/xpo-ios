@@ -11,6 +11,8 @@ import UIKit
 class ProfileViewController: UIViewController, FormDataSender {
     // MARK: - Properties
     
+    var session = AppSession.shared
+    
     var user: User!
     var passwordFieldEdited = false
     var usernameFieldEdited = false
@@ -27,11 +29,6 @@ class ProfileViewController: UIViewController, FormDataSender {
         userFieldsFilled && passwordFieldFilled
     }
     
-    var isNewUsernameAvailable: Bool {
-        guard let username = usernameTextField.text else { return false }
-        return User.isUsernameAvailable(username) || username == user.username
-    }
-    
     // MARK: - Outlets
     
     @IBOutlet var fullNameTextField: UITextField!
@@ -45,20 +42,7 @@ class ProfileViewController: UIViewController, FormDataSender {
     // MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        user.name = fullNameTextField.text!
-        user.username = usernameFieldEdited ? usernameTextField.text! : user.username
-        user.password = passwordFieldEdited ? passwordTextField.text! : user.password
-        User.update(user, name: user.name,
-                    username: user.username,
-                    password: user.password)
-        
-        let alert = UIAlertController(title: "Saved!", message: "You will see your updated profile immediately.", preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
-
-        let when = DispatchTime.now() + 1.5
-        DispatchQueue.main.asyncAfter(deadline: when) {
-          alert.dismiss(animated: true, completion: nil)
-        }
+        updateProfile()
     }
     
     // MARK: - Lifecycle methods
@@ -67,6 +51,40 @@ class ProfileViewController: UIViewController, FormDataSender {
         super.viewDidLoad()
         configureUIElements()
         manageTextFieldEditing()
+    }
+    
+    // MARK: - Updating
+    
+    func updateProfile() {
+        let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Updating your profile")
+        present(alert, animated: true, completion: nil)
+        session.updateUser(newName: fullNameTextField.text,
+                           newLogin: usernameFieldEdited ? usernameTextField.text : nil,
+                           newPassword: passwordFieldEdited ? passwordTextField.text : nil) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let user):
+                alert.dismiss(animated: true) { [weak self] in
+                    guard let self = self else { return }
+                    let alert = UIAlertController(title: "Saved!", message: "You will see your updated profile immediately.", preferredStyle: .alert)
+                    self.present(alert, animated: true, completion: nil)
+                    self.user = user
+                    self.configureUIElements()
+                    let when = DispatchTime.now() + 1.5
+                    DispatchQueue.main.asyncAfter(deadline: when) {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                }
+            case .failure(let error):
+                print("In updateProfile(): \(error)")
+                alert.dismiss(animated: true) { [weak self] in
+                    guard let self = self else { return }
+                    let alert = UIAlertController(title: "Updating failed", message: "Could not update profile", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
     
     // MARK: - UI configuration
@@ -78,7 +96,7 @@ class ProfileViewController: UIViewController, FormDataSender {
         saveButton.setEnabled(false)
         
         fullNameTextField.text = user.name
-        usernameTextField.text = user.username
+        usernameTextField.text = user.login
         
         [nameErrorLabel, usernameErrorLabel, passwordErrorLabel].forEach { hide(errorLabel: $0) }
     }
@@ -169,16 +187,11 @@ class ProfileViewController: UIViewController, FormDataSender {
     }
     
     func validateUsername() {
-        if isNewUsernameAvailable {
-            if isUsernameValid(usernameTextField.text!) {
-                hide(errorLabel: usernameErrorLabel)
-                saveButton.setEnabled(userFieldsFilled)
-            } else {
-                show(errorLabel: usernameErrorLabel, withText: "Must be at least 3 characters long and have no spaces")
-            }
+        if isUsernameValid(usernameTextField.text!) {
+            hide(errorLabel: usernameErrorLabel)
+            saveButton.setEnabled(userFieldsFilled)
         } else {
-            show(errorLabel: usernameErrorLabel, withText: "Username unavailable")
-            saveButton.setEnabled(false)
+            show(errorLabel: usernameErrorLabel, withText: "Must be at least 3 characters long and have no spaces")
         }
     }
 }

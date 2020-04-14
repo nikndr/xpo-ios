@@ -50,8 +50,14 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
         case .logIn:
-            break 
+            break
         }
+    }
+    
+    func showMainScreen() {
+        let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
+        view.window?.rootViewController = mainScreenVC
+        view.window?.makeKeyAndVisible()
     }
 
     // MARK: - UI preparation
@@ -79,16 +85,20 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
     func logIn() {
         if allFieldsFilled {
+            let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Logging in...")
+            present(alert, animated: true, completion: nil)
             session.logIn(withUsername: usernameTextField.text!, password: passwordTextField.text!) { result in
                 switch result {
-                case .success(_):
-                    let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
-                    self.view.window?.rootViewController = mainScreenVC
-                    self.view.window?.makeKeyAndVisible()
-                case .failure(let error):
-                    let alert = UIAlertController(title: "Login failed", message: error.rawValue, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                case .success:
+                    alert.dismiss(animated: true) { [weak self] in
+                        self?.showMainScreen()
+                    }
+                case .failure:
+                    alert.dismiss(animated: true) { [weak self] in
+                        let alert = UIAlertController(title: "Login failed", message: "Invalid login and password combination", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self?.present(alert, animated: true)
+                    }
                 }
             }
         }

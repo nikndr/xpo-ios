@@ -34,7 +34,7 @@ enum ContentType: String {
 
 enum ParameterKeys: String, Hashable {
     // MARK: - Auth and User
-    case login, password, email, name
+    case user, login, password, email, name
     case createdAt = "created_at"
     case updatedAt = "updated_at"
     case superadminRole = "superadmin_role"

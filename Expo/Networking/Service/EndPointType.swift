@@ -16,12 +16,11 @@ protocol EndPointType: URLRequestConvertible {
 }
 
 extension URLRequestConvertible where Self: EndPointType {
-    
     var baseURL: URL {
         guard let url = URL(string: K.Production.baseURL) else { fatalError("Base url cannot be loaded") }
         return url
     }
-    
+
     func asURLRequest() throws -> URLRequest {
         var request = URLRequest(url: baseURL.appendingPathComponent(path))
 
@@ -33,7 +32,23 @@ extension URLRequestConvertible where Self: EndPointType {
             switch task {
             case .request:
                 break
+            case .requestWithAuth:
+                guard let authToken = UserDefaults.standard.string(forKey: .jwt) else { throw NetworkError.unauthorized }
+                addHeaders([HTTPHeader.authorization(authToken)], request: &request)
             case .requestWithParameters(let bodyParameters, let urlParameters):
+                try configureParameters(bodyParameters: bodyParameters?.parameters,
+                                        urlParameters: urlParameters?.parameters,
+                                        request: &request)
+            case .requestWithParametersAndAuth(let bodyParameters, let urlParameters):
+                guard let authToken = UserDefaults.standard.string(forKey: .jwt) else { throw NetworkError.unauthorized }
+                addHeaders([HTTPHeader.authorization(authToken)], request: &request)
+                try configureParameters(bodyParameters: bodyParameters?.parameters,
+                                        urlParameters: urlParameters?.parameters,
+                                        request: &request)
+            case .requestWithParametersAndHeaders(let bodyParameters,
+                                                  let urlParameters,
+                                                  let headers):
+                addHeaders(headers, request: &request)
                 try configureParameters(bodyParameters: bodyParameters?.parameters,
                                         urlParameters: urlParameters?.parameters,
                                         request: &request)
@@ -57,6 +72,13 @@ extension URLRequestConvertible where Self: EndPointType {
             }
         } catch {
             throw error
+        }
+    }
+
+    private func addHeaders(_ headers: [HTTPHeader]?, request: inout URLRequest) {
+        guard let headers = headers else { return }
+        headers.forEach { header in
+            request.setValue(header.value, forHTTPHeaderField: header.name)
         }
     }
 }

@@ -11,6 +11,13 @@ import Alamofire
 enum UserEndPoint {
     // MARK: - Endpoints
 
+    // MARK: Likes and visits
+
+    case like(userID: Int, expoID: Int)
+    case visit(userID: Int, expoID: Int)
+
+    // MARK: User
+
     case getAllUsers
     case getUser(login: String)
     case updateUser(login: String, newLogin: String?, newName: String?, newPassword: String?)
@@ -23,13 +30,19 @@ extension UserEndPoint: EndPointType {
         switch self {
         case .getAllUsers, .getUser:
             return .get
-        case .updateUser:
+        case .like, .visit:
             return .post
+        case .updateUser:
+            return .put
         }
     }
 
     var path: String {
         switch self {
+        case .like:
+            return "/like"
+        case .visit:
+            return "/visit"
         case .getAllUsers:
             return "/users"
         case .getUser(let login), .updateUser(let login, _, _, _):
@@ -39,14 +52,19 @@ extension UserEndPoint: EndPointType {
 
     var task: HTTPTask {
         switch self {
+        case .like(let userID, let expoID), .visit(let userID, let expoID):
+            return .requestWithParametersAndAuth(bodyParameters: [.userID: userID,
+                                                                  .expoID: expoID],
+                                                 urlParameters: nil)
         case .getAllUsers, .getUser:
-            return .request
+            return .requestWithAuth
+
         case .updateUser(_, let newLogin, let newName, let newPassword):
             let parameters: OptionalParameters = [.login: newLogin,
                                                   .name: newName,
                                                   .password: newPassword]
-            return .requestWithParameters(bodyParameters: JSONParameterEncoder.coalesce(parameters),
-                                          urlParameters: nil)
+            return .requestWithParametersAndAuth(bodyParameters: JSONParameterEncoder.coalesce(parameters),
+                                                 urlParameters: nil)
         }
     }
 }

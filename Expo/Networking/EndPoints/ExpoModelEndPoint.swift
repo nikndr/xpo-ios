@@ -46,13 +46,13 @@ extension ExpoModelEndPoint: EndPointType {
     var task: HTTPTask {
         switch self {
         case .getExpoModel, .deleteExpoModel:
-            return .request
+            return .requestWithAuth
         case .getAllExpoModels(let expoID):
             let parameters: OptionalParameters = [.expoID: expoID]
-            return .requestWithParameters(bodyParameters: nil,
+            return .requestWithParametersAndAuth(bodyParameters: nil,
                                           urlParameters: URLParameterEncoder.coalesce(parameters))
         case .createExpoModel(let expoID, let arModelURL, let markerURL):
-            return .requestWithParameters(bodyParameters: [.expoID: expoID,
+            return .requestWithParametersAndAuth(bodyParameters: [.expoID: expoID,
                                                            .arModelURL: arModelURL,
                                                            .markerURL: markerURL],
                                           urlParameters: nil)
@@ -60,7 +60,7 @@ extension ExpoModelEndPoint: EndPointType {
             let parameters: OptionalParameters = [.modelID: modelID,
                                                   .arModelURL: arModelURL,
                                                   .markerURL: markerURL]
-            return .requestWithParameters(bodyParameters: JSONParameterEncoder.coalesce(parameters),
+            return .requestWithParametersAndAuth(bodyParameters: JSONParameterEncoder.coalesce(parameters),
                                           urlParameters: nil)
         }
     }

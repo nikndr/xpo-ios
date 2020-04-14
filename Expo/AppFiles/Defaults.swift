@@ -12,8 +12,10 @@ enum Defaults: String {
     case userID
     case name
     case username
+    case email
     case password
     case isOrganizer
+    case jwt
 }
 
 extension UserDefaults {

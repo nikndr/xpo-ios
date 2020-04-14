@@ -17,6 +17,7 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
     @IBOutlet var fullNameTextField: UITextField!
     @IBOutlet var usernameTextField: UITextField!
+    @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var organizerAccountSwitch: UISwitch!
     @IBOutlet var createAccountButton: UIButton!
@@ -24,6 +25,7 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
     var allFieldsFilled: Bool {
         !(fullNameTextField.text?.isEmpty ?? true) &&
             !(usernameTextField.text?.isEmpty ?? true) &&
+            !(emailTextField.text?.isEmpty ?? true) &&
             !(passwordTextField.text?.isEmpty ?? true)
     }
 
@@ -42,6 +44,7 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
         fullNameTextField.delegate = self
         usernameTextField.delegate = self
+        emailTextField.delegate = self
         passwordTextField.delegate = self
 
         createAccountButton.setEnabled(false)
@@ -73,7 +76,7 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
     // MARK: - Text field validation
 
     func manageTextFieldEditing() {
-        [fullNameTextField, usernameTextField, passwordTextField]
+        [fullNameTextField, usernameTextField, emailTextField, passwordTextField]
             .forEach { $0?.addTarget(self, action: #selector(editingChanged), for: .editingChanged) }
     }
 
@@ -89,16 +92,26 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
     func createAccount() {
         if allFieldsFilled {
-            session.signUp(withName: fullNameTextField.text!, username: usernameTextField.text!, password: passwordTextField.text!, isOrganizer: organizerAccountSwitch.isOn) { result in
+            let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Creating your account...")
+            present(alert, animated: true, completion: nil)
+            session.signUp(withName: fullNameTextField.text!, username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, isOrganizer: organizerAccountSwitch.isOn) { result in
                 switch result {
-                case .success(_):
-                    let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
-                    self.view.window?.rootViewController = mainScreenVC
-                    self.view.window?.makeKeyAndVisible()
+                case .success:
+                    alert.dismiss(animated: true) { [weak self] in
+                        guard let self = self else { return }
+                        let alert = UIAlertController(title: "Your account created", message: "Go ahead and log in!", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                            self?.navigationController?.popViewController(animated: true)
+                        }))
+                        self.present(alert, animated: true)
+                    }
                 case .failure(let error):
-                    let alert = UIAlertController(title: "Sign up failed", message: error.rawValue, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    alert.dismiss(animated: true) { [weak self] in
+                        guard let self = self else { return }
+                        let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
                 }
             }
         }

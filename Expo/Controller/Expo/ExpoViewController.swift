@@ -11,6 +11,7 @@ import UIKit
 class ExpoViewController: UIViewController {
     // MARK: - Properties
     
+    var session = AppSession.shared
     var expo: Expo!
     var downloadViewHeight: CGFloat = 0.0
     
@@ -25,7 +26,7 @@ class ExpoViewController: UIViewController {
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var addCommentButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet var likeButton: UIButton!
     
     // MARK: - Actions
     
@@ -33,17 +34,28 @@ class ExpoViewController: UIViewController {
         updateState()
     }
     
-    @IBAction func addCommentButtonPressed(_ sender: UIButton) {}
+    @IBAction func addCommentButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: .showComments, sender: self)
+    }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         updateLikeButton()
     }
+    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUIElements()
-        expo.increaseViewCount()
+        
+        increaseViewCount()
+    }
+    
+    // MARK: - Network calls
+    
+    func increaseViewCount() {
+        guard case .loggedIn(let user) = session.state else { return }
+        user.visit(expoID: expo.id) { _ in }
     }
     
     // MARK: - UI configuration
@@ -72,7 +84,7 @@ class ExpoViewController: UIViewController {
                 expo.decreaseLikeCount()
             } else {
                 likeButton.tintColor = Constants.likeButtonColor
-                user.like(expo)
+//                user.like(expo)
                 expo.increaseLikeCount()
             }
         }
@@ -87,9 +99,9 @@ class ExpoViewController: UIViewController {
     
     func assignExpoDataToUI() {
         navigationItem.title = expo.name
-        expoTitleImage.setImageFrom(url: expo.imageURL.absoluteString)
-        organizerLabel.text = expo.organizer.name
-        dateTimeLabel.text = formatTimeInterval(startDate: expo.startTime, endDate: expo.endTime)
+        expoTitleImage.setImageFrom(url: expo.imageURL)
+//        organizerLabel.text = expo.organizerID.name
+        dateTimeLabel.text = DateFormatter.formatTimeInterval(startDate: expo.startTime, endDate: expo.endTime)
         locationLabel.text = expo.locationName
         descriptionLabel.text = expo.description
     }
@@ -117,12 +129,12 @@ class ExpoViewController: UIViewController {
             self.downloadViewHeightConstraint.constant = self.downloadViewHeight
             self.view.layoutIfNeeded()
         }
-        actionButton.setTitle( Constants.cancelButtonText, for: .normal)
+        actionButton.setTitle(Constants.cancelButtonText, for: .normal)
         actionButton.backgroundColor = Constants.cancelButtonColor
     }
     
     func downloadedState() {
-        actionButton.setTitle( Constants.openButtonText, for: .normal)
+        actionButton.setTitle(Constants.openButtonText, for: .normal)
         actionButton.backgroundColor = Constants.openButtonColor
     }
     
@@ -130,8 +142,11 @@ class ExpoViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
-        case .todo:
+        case .showAR:
             break
+        case .showComments:
+            let destination = segue.destination as! CommentsViewController
+            destination.expo = expo
         }
     }
 }
@@ -140,7 +155,8 @@ class ExpoViewController: UIViewController {
 
 extension ExpoViewController: SegueHandler {
     enum SegueIdentifier: String {
-        case todo
+        case showAR
+        case showComments
     }
 }
 

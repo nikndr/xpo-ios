@@ -48,16 +48,16 @@ extension CommentsEndPoint: EndPointType {
         case .getAllComments(let userID, let expoID):
             let parameters: OptionalParameters = [.userID: userID,
                                                   .expoID: expoID]
-            return .requestWithParameters(bodyParameters: nil, urlParameters: URLParameterEncoder.coalesce(parameters))
+            return .requestWithParametersAndAuth(bodyParameters: nil, urlParameters: URLParameterEncoder.coalesce(parameters))
         case .getComment, .deleteComment:
-            return .request
+            return .requestWithAuth
         case .createComment(let userID, let expoID, let text):
-            return .requestWithParameters(bodyParameters: [.userID: userID,
+            return .requestWithParametersAndAuth(bodyParameters: [.userID: userID,
                                                            .expoID: expoID,
                                                            .text: text],
                                           urlParameters: nil)
         case .updateComment(_, let text):
-            return .requestWithParameters(bodyParameters: [.text: text],
+            return .requestWithParametersAndAuth(bodyParameters: [.text: text],
                                           urlParameters: nil)
         }
     }

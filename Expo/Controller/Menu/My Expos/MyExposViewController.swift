@@ -9,22 +9,71 @@
 import UIKit
 
 class MyExposViewController: UIViewController {
+    // MARK: - Properties
+
+    var expoTableChild: MyExpoListTableViewController? {
+        didSet {
+            expoTableChild?.delegate = self
+        }
+    }
+
+    var selectedExpo: Expo?
+
+    // MARK: - Outlets
+
+    @IBOutlet var createNewExpoButton: UIButton!
+    @IBOutlet weak var createNewExpoBottomConstraint: NSLayoutConstraint!
+    
+    // MARK: - Actions
+
+    @IBAction func createNewExpoButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: .createExpo, sender: self)
+    }
+
+    // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        configureUIElements()
     }
-    
 
-    /*
+    // MARK: - UI configuration
+
+    func configureUIElements() {
+        createNewExpoButton.makeRoundedCorners()
+    }
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segueIdentifier(for: segue) {
+        case .editExpo:
+            let destination = segue.destination as! EditExpoViewController
+            destination.expo = selectedExpo!
+        case .createExpo:
+            break
+        case .myExpoList:
+            break
+        }
     }
-    */
+}
 
+// MARK: - Conformation to TableDataReceiver
+
+extension MyExposViewController: TableDataReceiver {
+    func didSelectCell(withExpo expo: Expo) {
+        selectedExpo = expo
+        performSegue(withIdentifier: .editExpo, sender: self)
+    }
+}
+
+// MARK: - Conformation to SegueHandler
+
+extension MyExposViewController: SegueHandler {
+    enum SegueIdentifier: String {
+        case editExpo
+        case createExpo
+        case myExpoList
+    }
 }

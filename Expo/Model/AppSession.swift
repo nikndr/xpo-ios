@@ -6,7 +6,7 @@
 //  Copyright © 2020 Nikandr Marhal. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 
 enum AuthError: String, Error {
     case invalidCredentials = "Cannot proceed with these login and password."
@@ -22,27 +22,31 @@ class AppSession {
     private(set) var state: State
     static let shared = AppSession()
 
-    func logIn(withUsername username: String, password: String, completion: ((Result<User, AuthError>) -> Void)?) {
-        // TODO: Networking calls; for now:
-        if let user = User.getBy(username: username), user.password == password {
-            state = .loggedIn(user)
-            updateUserSession()
-            completion?(.success(user))
-        } else {
-            completion?(.failure(.invalidCredentials))
+    func logIn(withUsername username: String, password: String, completion: ((Result<User, AFError>) -> Void)?) {
+        APIClient.login(login: username, password: password) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let user):
+                self.state = .loggedIn(user)
+                self.updateUserSession()
+                completion?(.success(user))
+            case .failure(let error):
+                completion?(.failure(error))
+            }
         }
     }
 
-    func signUp(withName name: String, username: String, password: String, isOrganizer: Bool, completion: ((Result<User, AuthError>) -> Void)?) {
-        // TODO: Networking calls; for now:
-        if User.isUsernameAvailable(username) {
-            let user = User(name: name, username: username, password: password, isOrganizer: isOrganizer)
-            User.add(user)
-            state = .loggedIn(user)
-            updateUserSession()
-            completion?(.success(user))
-        } else {
-            completion?(.failure(.usernameTaken))
+    func signUp(withName name: String, username: String, email: String, password: String, isOrganizer: Bool, completion: ((Result<User, AFError>) -> Void)?) {
+        APIClient.signUp(name: name, username: username, password: password, isOrganizer: isOrganizer, email: email) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let user):
+                self.state = .loggedIn(user)
+                self.updateUserSession()
+                completion?(.success(user))
+            case .failure(let error):
+                completion?(.failure(error))
+            }
         }
     }
 
@@ -51,9 +55,21 @@ class AppSession {
         updateUserSession()
         completion?()
     }
-    
-    func updateUser(_ user: User) {
-        state = .loggedIn(user)
+
+    func updateUser(newName: String?, newLogin: String?, newPassword: String?, completion: ((Result<User, AFError>) -> Void)?) {
+        if case .loggedIn(let user) = state {
+            APIClient.updateUser(login: user.login, newLogin: newLogin, newName: newName, newPassword: newPassword) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let user):
+                    self.state = .loggedIn(user)
+                    self.updateUserSession()
+                    completion?(.success(user))
+                case .failure(let error):
+                    completion?(.failure(error))
+                }
+            }
+        }
     }
 
     private func updateUserSession() {
@@ -62,15 +78,16 @@ class AppSession {
         case .loggedIn(let user):
             defaults.setValue(value: user.id, forKey: .userID)
             defaults.setValue(value: user.name, forKey: .name)
-            defaults.setValue(value: user.username, forKey: .username)
-            defaults.setValue(value: user.password, forKey: .password)
+            defaults.setValue(value: user.login, forKey: .username)
+            defaults.setValue(value: user.email, forKey: .email)
             defaults.setValue(value: user.isOrganizer, forKey: .isOrganizer)
         case .loggedOut:
             defaults.setValue(value: nil, forKey: .userID)
             defaults.setValue(value: nil, forKey: .name)
             defaults.setValue(value: nil, forKey: .username)
-            defaults.setValue(value: nil, forKey: .password)
+            defaults.setValue(value: nil, forKey: .email)
             defaults.setValue(value: nil, forKey: .isOrganizer)
+            defaults.setValue(value: nil, forKey: .jwt)
         }
     }
 
@@ -79,9 +96,10 @@ class AppSession {
         if let id = defaults.integer(forKey: .userID),
             let name = defaults.string(forKey: .name),
             let username = defaults.string(forKey: .username),
-            let password = defaults.string(forKey: .password) {
+            let email = defaults.string(forKey: .email),
+            let _ = defaults.string(forKey: .jwt) {
             let isOrganizer = defaults.bool(forKey: .isOrganizer)
-            let user = User(id: id, name: name, username: username, password: password, isOrganizer: isOrganizer)
+            let user = User(id: id, name: name, username: username, isOrganizer: isOrganizer, email: email)
             self.state = .loggedIn(user)
         } else {
             self.state = .loggedOut

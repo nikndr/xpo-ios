@@ -62,7 +62,7 @@ class MainScreenViewController: UIViewController {
 }
 
 // MARK: - Conformation to TableDataReceiver
-extension MainScreenViewController: TableDataReceiver {
+extension MainScreenViewController: ExpoDataReceiver {
     func didSelectCell(withExpo expo: Expo) {
         selectedExpo = expo
         performSegue(withIdentifier: .showExpo, sender: self)

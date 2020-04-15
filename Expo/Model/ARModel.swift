@@ -9,22 +9,40 @@
 import Foundation
 
 struct ARModel: Identifiable {
-    var id: Int
-    var markerURL: String
-    var modelURL: String
+    // MARK: - Model properties
+
+    let id: Int
+    let markerURL: String
+    let modelURL: String
+    let expoID: Int
+    let createdAt: Date
+    let updatedAt: Date
+
+    // MARK: - Other properties
+
     var markerFilePath: String?
     var modelFilePath: String?
+}
 
-    init(id: Int, markerURL: String, modelURL: String) {
-        self.id = id
-        self.markerURL = markerURL
-        self.modelURL = modelURL
+extension ARModel: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case markerURL = "marker_url"
+        case modelURL = "ar_model_url"
+        case expoID = "expo_id"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
 
-    init(markerURL: String, modelURL: String) {
-        self.id = ARModel.nextID
-        self.markerURL = markerURL
-        self.modelURL = modelURL
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.markerURL = try container.decode(String.self, forKey: .markerURL)
+        self.modelURL = try container.decode(String.self, forKey: .modelURL)
+        self.expoID = try container.decode(Int.self, forKey: .expoID)
+        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
     }
 }
 
@@ -36,19 +54,4 @@ extension ARModel: Hashable, Equatable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-}
-
-// MARK: - Database xDxDxD
-
-extension ARModel {
-    static var nextID: Int {
-        models.count
-    }
-
-    static var models: [ARModel] = [
-        ARModel(id: 0, markerURL: "", modelURL: ""),
-        ARModel(id: 1, markerURL: "", modelURL: ""),
-        ARModel(id: 2, markerURL: "", modelURL: ""),
-        ARModel(id: 3, markerURL: "", modelURL: ""),
-    ]
 }

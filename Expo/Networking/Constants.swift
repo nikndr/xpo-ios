@@ -34,7 +34,7 @@ enum ContentType: String {
 
 enum ParameterKeys: String, Hashable {
     // MARK: - Auth and User
-    case user, login, password, email, name
+    case user, login, password, email, name, liked
     case createdAt = "created_at"
     case updatedAt = "updated_at"
     case superadminRole = "superadmin_role"
@@ -48,8 +48,8 @@ enum ParameterKeys: String, Hashable {
     case startTime = "start_time"
     case endTime = "end_time"
     case locationName = "location_name"
-    case expoID = "location_id"
-    case organizerID = "organizer_id"
+    case expoID = "expo_id"
+    case organizerName = "organizer_name"
     case visitorID = "visiter_id"
     
     // MARK: - Comment

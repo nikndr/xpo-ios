@@ -11,7 +11,7 @@ import Alamofire
 enum ExpoEndPoint {
     // MARK: - Endpoints
 
-    case getAllExpos(organizerID: Int?, visitorID: Int?)
+    case getAllExpos
     case getExpo(id: Int)
     case createExpo(name: String, description: String, imageURL: String, startTime: Date, endTime: Date, locationName: String, userID: Int)
     case updateExpo(id: Int,
@@ -51,11 +51,8 @@ extension ExpoEndPoint: EndPointType {
 
     var task: HTTPTask {
         switch self {
-        case .getAllExpos(let organizerID, let visitorID):
-            let parameters: OptionalParameters = [.organizerID: organizerID,
-                                                  .visitorID: visitorID]
-            return .requestWithParametersAndAuth(bodyParameters: nil,
-                                          urlParameters: URLParameterEncoder.coalesce(parameters))
+        case .getAllExpos:
+            return .requestWithAuth
         case .getExpo:
             return .requestWithAuth
         case .createExpo(let name, let description, let imageURL, let startTime, let endTime, let locationName, let userID):

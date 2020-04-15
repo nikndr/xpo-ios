@@ -47,11 +47,13 @@
 		D48BF093242E342900F43C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF091242E342900F43C57 /* Main.storyboard */; };
 		D48BF095242E342E00F43C57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48BF094242E342E00F43C57 /* Assets.xcassets */; };
 		D48BF098242E342E00F43C57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D48BF096242E342E00F43C57 /* LaunchScreen.storyboard */; };
+		D4B9A6F72447BF0B00E00602 /* FileSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B9A6F62447BF0B00E00602 /* FileSelectorTableViewCell.swift */; };
 		D4C81767244645F900A33505 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81766244645F900A33505 /* Comment.swift */; };
-		D4C817692446585300A33505 /* EditExpoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C817682446585300A33505 /* EditExpoViewController.swift */; };
-		D4C8176B2446586C00A33505 /* CreateExpoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */; };
+		D4C817692446585300A33505 /* ManageExpoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C817682446585300A33505 /* ManageExpoViewController.swift */; };
 		D4C8176D244670E300A33505 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176C244670E300A33505 /* ARViewController.swift */; };
 		D4C8176F244670FD00A33505 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8176E244670FD00A33505 /* CommentsViewController.swift */; };
+		D4C8177124473B3F00A33505 /* ExpoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8177024473B3F00A33505 /* ExpoNavigationController.swift */; };
+		D4C817752447616300A33505 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C817742447616200A33505 /* CommentTableViewCell.swift */; };
 		D4DC5A6F2444D7D0005285D5 /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A6E2444D7D0005285D5 /* UserEndPoint.swift */; };
 		D4DC5A712444D7EA005285D5 /* ExpoEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A702444D7EA005285D5 /* ExpoEndPoint.swift */; };
 		D4DC5A732444D844005285D5 /* CommentsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC5A722444D844005285D5 /* CommentsEndPoint.swift */; };
@@ -111,11 +113,13 @@
 		D48BF094242E342E00F43C57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D48BF097242E342E00F43C57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D48BF099242E342E00F43C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4B9A6F62447BF0B00E00602 /* FileSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		D4C81766244645F900A33505 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		D4C817682446585300A33505 /* EditExpoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpoViewController.swift; sourceTree = "<group>"; };
-		D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExpoViewController.swift; sourceTree = "<group>"; };
+		D4C817682446585300A33505 /* ManageExpoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageExpoViewController.swift; sourceTree = "<group>"; };
 		D4C8176C244670E300A33505 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		D4C8176E244670FD00A33505 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		D4C8177024473B3F00A33505 /* ExpoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoNavigationController.swift; sourceTree = "<group>"; };
+		D4C817742447616200A33505 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		D4DC5A6E2444D7D0005285D5 /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
 		D4DC5A702444D7EA005285D5 /* ExpoEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpoEndPoint.swift; sourceTree = "<group>"; };
 		D4DC5A722444D844005285D5 /* CommentsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsEndPoint.swift; sourceTree = "<group>"; };
@@ -168,8 +172,7 @@
 			children = (
 				D440E27C24311C3500F8B986 /* MyExposViewController.swift */,
 				D42325EA2440D7B50037FB07 /* MyExpoListTableViewController.swift */,
-				D4C817682446585300A33505 /* EditExpoViewController.swift */,
-				D4C8176A2446586B00A33505 /* CreateExpoViewController.swift */,
+				D4C817682446585300A33505 /* ManageExpoViewController.swift */,
 			);
 			path = "My Expos";
 			sourceTree = "<group>";
@@ -206,12 +209,14 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
-		D440E28524311F4A00F8B986 /* MainScreen */ = {
+		D440E28524311F4A00F8B986 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
 				D440E28624311F6200F8B986 /* ExpoTableViewCell.swift */,
+				D4C817742447616200A33505 /* CommentTableViewCell.swift */,
+				D4B9A6F62447BF0B00E00602 /* FileSelectorTableViewCell.swift */,
 			);
-			path = MainScreen;
+			path = TableCells;
 			sourceTree = "<group>";
 		};
 		D440E28824311F7300F8B986 /* Supporting Files */ = {
@@ -228,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				D44DF67C2432476C00DC8BD2 /* RootViewController.swift */,
+				D4C8177024473B3F00A33505 /* ExpoNavigationController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -272,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				D450C176243FC508009D93DD /* Profile */,
-				D440E28524311F4A00F8B986 /* MainScreen */,
+				D440E28524311F4A00F8B986 /* TableCells */,
 				D450C175243FC4FA009D93DD /* Extensions */,
 			);
 			path = View;
@@ -542,18 +548,18 @@
 				D44DF67D2432476C00DC8BD2 /* RootViewController.swift in Sources */,
 				D470C056242E630200ED48DA /* User.swift in Sources */,
 				D4E6C80C2444C1550067563D /* EndPointType.swift in Sources */,
+				D4C817752447616300A33505 /* CommentTableViewCell.swift in Sources */,
 				D470C058242E6EC100ED48DA /* UIButtonExtension.swift in Sources */,
 				D44DF6802432484700DC8BD2 /* SplashViewController.swift in Sources */,
 				D4DC5A752444D862005285D5 /* ExpoModelEndPoint.swift in Sources */,
 				D41DA7C324461732002EA632 /* UserToExpo.swift in Sources */,
 				D450C174243FAEFC009D93DD /* Download.swift in Sources */,
-				D4C8176B2446586C00A33505 /* CreateExpoViewController.swift in Sources */,
 				D440E26E242FECFA00F8B986 /* Expo.swift in Sources */,
 				D4DC5A852444EA8D005285D5 /* Router.swift in Sources */,
 				D450C166243E6092009D93DD /* UIStoryboardExtension.swift in Sources */,
 				D4DC5A832444E9E5005285D5 /* NetworkRouter.swift in Sources */,
 				D456BEC4242EB54B006D9965 /* SegueHandler.swift in Sources */,
-				D4C817692446585300A33505 /* EditExpoViewController.swift in Sources */,
+				D4C817692446585300A33505 /* ManageExpoViewController.swift in Sources */,
 				D41DA7C12445DE8D002EA632 /* UIAlertControllerExtension.swift in Sources */,
 				D440E28424311F2B00F8B986 /* ExpoListTableViewController.swift in Sources */,
 				D4DC5A782444DF3F005285D5 /* ParameterEncoder.swift in Sources */,
@@ -561,6 +567,7 @@
 				D450C17C243FD04E009D93DD /* AuthChoiceNavigationController.swift in Sources */,
 				D41DA7BF2445B25A002EA632 /* APIClient.swift in Sources */,
 				D4C8176D244670E300A33505 /* ARViewController.swift in Sources */,
+				D4B9A6F72447BF0B00E00602 /* FileSelectorTableViewCell.swift in Sources */,
 				D450C16E243F8A97009D93DD /* DateFromatting.swift in Sources */,
 				D440E2742430001800F8B986 /* ARModel.swift in Sources */,
 				D450C160243E0D19009D93DD /* AuthChoiceViewController.swift in Sources */,
@@ -576,6 +583,7 @@
 				D450C179243FC520009D93DD /* ProfileTableViewCell.swift in Sources */,
 				D450C172243F9D46009D93DD /* UIViewExtension.swift in Sources */,
 				D4C8176F244670FD00A33505 /* CommentsViewController.swift in Sources */,
+				D4C8177124473B3F00A33505 /* ExpoNavigationController.swift in Sources */,
 				D4DC5A7D2444E070005285D5 /* Errors.swift in Sources */,
 				D470C05E242EA93A00ED48DA /* AuthenticationViewController.swift in Sources */,
 				D450C17E2440A5FF009D93DD /* ProfileViewController.swift in Sources */,

@@ -13,14 +13,25 @@ class ExpoViewController: UIViewController {
     
     var session = AppSession.shared
     var expo: Expo!
+    var commentsControllerChild: CommentsViewController? {
+        didSet {
+            commentsControllerChild?.expoReloadDelegate = self
+        }
+    }
+    
     var downloadViewHeight: CGFloat = 0.0
+    var isLiked: Bool! {
+        didSet {
+            likeButton.tintColor = isLiked ? Constants.likeButtonColor : Constants.dislikeButtonColor
+        }
+    }
     
     // MARK: - Outlets
     
     @IBOutlet var expoTitleImage: UIImageView!
     @IBOutlet var downloadView: UIProgressView!
     @IBOutlet var downloadViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var actionButton: UIButton!
+    @IBOutlet var proceedButton: UIButton!
     @IBOutlet var organizerLabel: UILabel!
     @IBOutlet var dateTimeLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
@@ -30,7 +41,7 @@ class ExpoViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func actionButtonPressed(_ sender: UIButton) {
+    @IBAction func proceedButtonPressed(_ sender: UIButton) {
         updateState()
     }
     
@@ -39,23 +50,51 @@ class ExpoViewController: UIViewController {
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
-        updateLikeButton()
+        guard case .loggedIn(let user) = session.state else { return }
+        isLiked.toggle()
+        if isLiked {
+            user.like(expo) { _ in }
+        } else {
+            user.dislike(expo) { _ in }
+        }
+//        user.like(expo, value: isLiked) { response in
+//            switch response {
+//            case .success(let uToE):
+//                print(uToE)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
     
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.visitExpo()
+//            self.configureUIElements()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureUIElements()
-        
-        increaseViewCount()
     }
     
     // MARK: - Network calls
     
-    func increaseViewCount() {
+    func visitExpo() {
         guard case .loggedIn(let user) = session.state else { return }
-        user.visit(expoID: expo.id) { _ in }
+        user.visit(expoID: expo.id) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let userToExpo):
+                self.isLiked = userToExpo.liked
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // MARK: - UI configuration
@@ -65,34 +104,12 @@ class ExpoViewController: UIViewController {
     func configureUIElements() {
         adjustments()
         assignExpoDataToUI()
-        
-        if case .loggedIn(let user) = AppSession.shared.state {
-            if user.likes(expo) {
-                likeButton.tintColor = Constants.likeButtonColor
-            } else {
-                likeButton.tintColor = Constants.dislikeButtonColor
-            }
-        }
         notLoadedState()
     }
     
-    func updateLikeButton() {
-        if case .loggedIn(let user) = AppSession.shared.state {
-            if user.likes(expo) {
-                likeButton.tintColor = Constants.dislikeButtonColor
-                user.dislike(expo)
-                expo.decreaseLikeCount()
-            } else {
-                likeButton.tintColor = Constants.likeButtonColor
-//                user.like(expo)
-                expo.increaseLikeCount()
-            }
-        }
-    }
-    
     func adjustments() {
-        actionButton.makeRoundedCorners(withRadius: nil, corners: [.bottomLeft, .bottomRight])
-        expoTitleImage.makeRoundedCorners(withRadius: actionButton.bounds.height / 2, corners: [.topLeft, .topRight])
+        proceedButton.makeRoundedCorners(withRadius: nil, corners: [.bottomLeft, .bottomRight])
+        expoTitleImage.makeRoundedCorners(withRadius: proceedButton.bounds.height / 2, corners: [.topLeft, .topRight])
         addCommentButton.makeRoundedCorners()
         likeButton.makeRoundedCorners()
     }
@@ -129,13 +146,13 @@ class ExpoViewController: UIViewController {
             self.downloadViewHeightConstraint.constant = self.downloadViewHeight
             self.view.layoutIfNeeded()
         }
-        actionButton.setTitle(Constants.cancelButtonText, for: .normal)
-        actionButton.backgroundColor = Constants.cancelButtonColor
+        proceedButton.setTitle(Constants.cancelButtonText, for: .normal)
+        proceedButton.backgroundColor = Constants.cancelButtonColor
     }
     
     func downloadedState() {
-        actionButton.setTitle(Constants.openButtonText, for: .normal)
-        actionButton.backgroundColor = Constants.openButtonColor
+        proceedButton.setTitle(Constants.openButtonText, for: .normal)
+        proceedButton.backgroundColor = Constants.openButtonColor
     }
     
     // Mark: - Navigation
@@ -147,6 +164,7 @@ class ExpoViewController: UIViewController {
         case .showComments:
             let destination = segue.destination as! CommentsViewController
             destination.expo = expo
+            commentsControllerChild = destination
         }
     }
 }
@@ -171,5 +189,13 @@ extension ExpoViewController {
         static let openButtonColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         static let likeButtonColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         static let dislikeButtonColor = #colorLiteral(red: 0.5960784314, green: 0.5960784314, blue: 0.6156862745, alpha: 1)
+    }
+}
+
+
+// MARK: - Conformation to ExpoReloadDelegate
+extension ExpoViewController: ExpoReloadDelegate {
+    func reloaded(_ expo: Expo) {
+        self.expo = expo
     }
 }

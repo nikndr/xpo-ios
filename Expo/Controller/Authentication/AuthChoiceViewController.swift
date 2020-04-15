@@ -31,10 +31,5 @@ class AuthChoiceViewController: UIViewController {
         haveAccountButton.makeRoundedCorners()
         dontHaveAccountButton.makeRoundedCorners()
     }
-    
-    // Mark: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
+  
 }

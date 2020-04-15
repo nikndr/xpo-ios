@@ -93,7 +93,8 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
                     alert.dismiss(animated: true) { [weak self] in
                         self?.showMainScreen()
                     }
-                case .failure:
+                case .failure(let error):
+                    print(error)
                     alert.dismiss(animated: true) { [weak self] in
                         let alert = UIAlertController(title: "Login failed", message: "Invalid login and password combination", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

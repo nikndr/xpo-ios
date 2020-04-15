@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol TableDataReceiver {
+protocol ExpoDataReceiver {
     func didSelectCell(withExpo expo: Expo)
 }
 
 class ExpoListTableViewController: UITableViewController {
     // MARK: - Properties
 
-    var delegate: TableDataReceiver?
+    var delegate: ExpoDataReceiver?
     var expos = [Expo]()
 
     // MARK: - Lifecycle Methods
@@ -34,6 +34,8 @@ class ExpoListTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.loadData()
         }
+        let footer = UIView(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 50))
+        tableView.tableFooterView = footer
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -91,8 +93,7 @@ class ExpoListTableViewController: UITableViewController {
         cell.previewImageURL = expo.imageURL
         cell.viewCount = expo.viewsCount
         cell.likeCount = expo.likesCount
-        
-//        cell.organizer = expo.organizerID.name
+        cell.organizer = expo.organizerName
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -11,7 +11,7 @@ import Alamofire
 enum CommentsEndPoint {
     // MARK: - Endpoints
 
-    case getAllComments(userID: Int?, expoID: Int)
+    case getAllComments
     case getComment(commentID: Int)
     case createComment(userID: Int, expoID: Int, text: String)
     case updateComment(commentID: Int, text: String)
@@ -45,20 +45,18 @@ extension CommentsEndPoint: EndPointType {
 
     var task: HTTPTask {
         switch self {
-        case .getAllComments(let userID, let expoID):
-            let parameters: OptionalParameters = [.userID: userID,
-                                                  .expoID: expoID]
-            return .requestWithParametersAndAuth(bodyParameters: nil, urlParameters: URLParameterEncoder.coalesce(parameters))
+        case .getAllComments:
+            return .requestWithAuth
         case .getComment, .deleteComment:
             return .requestWithAuth
         case .createComment(let userID, let expoID, let text):
             return .requestWithParametersAndAuth(bodyParameters: [.userID: userID,
-                                                           .expoID: expoID,
-                                                           .text: text],
-                                          urlParameters: nil)
+                                                                  .expoID: expoID,
+                                                                  .text: text],
+                                                 urlParameters: nil)
         case .updateComment(_, let text):
             return .requestWithParametersAndAuth(bodyParameters: [.text: text],
-                                          urlParameters: nil)
+                                                 urlParameters: nil)
         }
     }
 }

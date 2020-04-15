@@ -9,33 +9,28 @@
 import Alamofire
 import Foundation
 
-class Expo: Identifiable, Codable {
+struct Expo: Identifiable, Codable {
     // MARK: - Properties
 
-    var id: Int
-    var organizerID: Int
-    var name: String
-    var description: String
-    var imageURL: String
-    var startTime: Date
-    var endTime: Date
-    var locationName: String
-    var likesCount = Int()
-    var viewsCount = Int()
+    let id: Int
+    let userID: Int
+    let name: String
+    let description: String
+    let imageURL: String
+    let startTime: Date
+    let endTime: Date
+    let locationName: String
+    let likesCount: Int
+    let viewsCount: Int
     let createdAt: Date
-    var updatedAt: Date
+    let updatedAt: Date
+    let organizerName: String
+    let arModels: [ARModel]
+    var comments: [Comment]
 
     // MARK: - Maintaining expo load state
 
     var downloaded = false
-
-    // MARK: - User interaction logic
-
-    func increaseViewCount() {}
-
-    func increaseLikeCount() {}
-
-    func decreaseLikeCount() {}
 
     // MARK: - AR Model loading
 
@@ -43,9 +38,9 @@ class Expo: Identifiable, Codable {
 
     // MARK: - Conformation to Codable
 
-    enum ExpoCodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
-        case organizerID = "user_id"
+        case userID = "user_id"
         case name
         case description
         case imageURL = "image_url"
@@ -56,24 +51,34 @@ class Expo: Identifiable, Codable {
         case viewsCount = "views_count"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case organizerName = "organizer_name"
+        case comments
+        case arModels = "expo_models"
     }
 
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ExpoCodingKeys.self)
-
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.organizerID = try container.decode(Int.self, forKey: .organizerID)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.description = try container.decode(String.self, forKey: .description)
-        self.imageURL = try container.decode(String.self, forKey: .imageURL)
-        self.startTime = try container.decode(Date.self, forKey: .startTime)
-        self.endTime = try container.decode(Date.self, forKey: .endTime)
-        self.locationName = try container.decode(String.self, forKey: .locationName)
-        self.likesCount = try container.decode(Int.self, forKey: .likesCount)
-        self.viewsCount = try container.decode(Int.self, forKey: .viewsCount)
-        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
-        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
-    }
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//
+//        self.id = try container.decode(Int.self, forKey: .id)
+//        self.userID = try container.decode(Int.self, forKey: .userID)
+//        self.name = try container.decode(String.self, forKey: .name)
+//        self.description = try container.decode(String.self, forKey: .description)
+//        self.imageURL = try container.decode(String.self, forKey: .imageURL)
+//        self.startTime = try container.decode(Date.self, forKey: .startTime)
+//        self.endTime = try container.decode(Date.self, forKey: .endTime)
+//        self.locationName = try container.decode(String.self, forKey: .locationName)
+//        self.likesCount = try container.decode(Int.self, forKey: .likesCount)
+//        self.viewsCount = try container.decode(Int.self, forKey: .viewsCount)
+//        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+//        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+//        self.organizerName = try container.decode(String.self, forKey: .organizerName)
+//
+//        let commentContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .comments)
+//        self.comments = try commentContainer.decode([Comment].self, forKey: .comments)
+//
+//        let modelContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .arModels)
+//        self.arModels = try modelContainer.decode([ARModel].self, forKey: .arModels)
+//    }
 }
 
 // MARK: - Conformation to Hashable, Equtable
@@ -95,11 +100,11 @@ extension Expo {
         APIClient.getAllExpos(completion: completion)
     }
 
-    func getOrganizer(completion: @escaping (Result<User, AFError>) -> Void) {
-        // TODO: API FIX
+    static func getExpo(by id: Int, completion: @escaping (Result<Expo, AFError>) -> Void) {
+        APIClient.getExpo(id: id, completion: completion)
     }
-    
-    func випіліца(completion: @escaping (Result<Expo, AFError>) -> Void) {
+
+    func delete(completion: @escaping (Result<Expo, AFError>) -> Void) {
         APIClient.deleteExpo(id: id, completion: completion)
     }
 }

@@ -10,23 +10,19 @@ import Alamofire
 
 struct APIClient {
     // MARK: - Generic requests
+
     
     @discardableResult
     private static func request<ResponseType: Decodable>(route: EndPointType,
                                                          decoder: JSONDecoder = JSONDecoder(),
                                                          completion: @escaping (Result<ResponseType, AFError>) -> Void) -> DataRequest {
         decoder.dateDecodingStrategy = .formatted(.iso8601Full)
-//        AF.request(route)
-//            .responseString { (response) in
-//                print(response)
-//        }
         return AF.request(route)
             .validate(statusCode: 200..<600)
             .responseDecodable(decoder: decoder) { (response: DataResponse<ResponseType, AFError>) in
+                debugPrint(response)
                 if let auth = response.response?.allHeaderFields["Authorization"] as? String {
                     UserDefaults.standard.setValue(value: auth, forKey: .jwt)
-                } else {
-                    print("no auth token in response from request: \(route.path)")
                 }
                 completion(response.result)
             }
@@ -64,8 +60,9 @@ struct APIClient {
         request(route: UserEndPoint.getUser(login: login), completion: completion)
     }
     
-    static func like(userID: Int, expoID: Int, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
-        request(route: UserEndPoint.like(userID: userID, expoID: expoID), completion: completion)
+    static func like(userID: Int, expoID: Int, value: Bool, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        print(value)
+        request(route: UserEndPoint.like(userID: userID, expoID: expoID, value: value), completion: completion)
     }
     
     static func visit(userID: Int, expoID: Int, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
@@ -74,8 +71,8 @@ struct APIClient {
     
     // MARK: - Expo
     
-    static func getAllExpos(organizerID: Int? = nil, visitorID: Int? = nil, completion: @escaping (Result<[Expo], AFError>) -> Void) {
-        request(route: ExpoEndPoint.getAllExpos(organizerID: nil, visitorID: nil), completion: completion)
+    static func getAllExpos(completion: @escaping (Result<[Expo], AFError>) -> Void) {
+        request(route: ExpoEndPoint.getAllExpos, completion: completion)
     }
     
     static func getExpo(id: Int, completion: @escaping (Result<Expo, AFError>) -> Void) {
@@ -127,7 +124,7 @@ struct APIClient {
     // MARK: - Comments
     
     static func getAllComments(userID: Int?, expoID: Int, completion: @escaping (Result<Comment, AFError>) -> Void) {
-        // TODO: impl
+        request(route: CommentsEndPoint.getAllComments, completion: completion)
     }
     
     static func getComment(commentID: Int, completion: @escaping (Result<Comment, AFError>) -> Void) {
@@ -135,7 +132,7 @@ struct APIClient {
     }
     
     static func createComment(userID: Int, expoID: Int, text: String, completion: @escaping (Result<Comment, AFError>) -> Void) {
-        // TODO: impl
+        request(route: CommentsEndPoint.createComment(userID: userID, expoID: expoID, text: text), completion: completion)
     }
     
     static func updateComment(commentID: Int, text: String, completion: @escaping (Result<Comment, AFError>) -> Void) {
@@ -143,6 +140,6 @@ struct APIClient {
     }
     
     static func deleteComment(commentID: Int, completion: @escaping (Result<Comment, AFError>) -> Void) {
-        // TODO: impl
+        request(route: CommentsEndPoint.deleteComment(commentID: commentID), completion: completion)
     }
 }

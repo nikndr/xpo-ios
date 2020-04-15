@@ -49,11 +49,13 @@ class MyExposViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
         case .editExpo:
-            let destination = segue.destination as! EditExpoViewController
+            let destination = segue.destination as! ManageExpoViewController
             destination.expo = selectedExpo!
+            destination.navigationItem.title = "Edit \(selectedExpo!.name)"
         case .createExpo:
-            break
-        case .myExpoList:
+            let destination = segue.destination as! ManageExpoViewController
+            destination.navigationItem.title = "Create new Expo"
+        case .myExpoList, .editExpoAnother:
             break
         }
     }
@@ -61,7 +63,7 @@ class MyExposViewController: UIViewController {
 
 // MARK: - Conformation to TableDataReceiver
 
-extension MyExposViewController: TableDataReceiver {
+extension MyExposViewController: ExpoDataReceiver {
     func didSelectCell(withExpo expo: Expo) {
         selectedExpo = expo
         performSegue(withIdentifier: .editExpo, sender: self)
@@ -74,6 +76,7 @@ extension MyExposViewController: SegueHandler {
     enum SegueIdentifier: String {
         case editExpo
         case createExpo
+        case editExpoAnother
         case myExpoList
     }
 }

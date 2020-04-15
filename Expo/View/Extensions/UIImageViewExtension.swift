@@ -50,7 +50,8 @@ extension UIImageView {
         let downloadImageTask = session.dataTask(with: url) { data, _, error in
             guard let imageData = data else {
                 if let error = error {
-                    print(error.localizedDescription)
+                    debugPrint(error)
+                    self.image = #imageLiteral(resourceName: "defaultExpoImage")
                 }
                 return
             }

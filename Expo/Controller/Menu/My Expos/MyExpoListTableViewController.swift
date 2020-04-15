@@ -13,7 +13,7 @@ class MyExpoListTableViewController: UITableViewController {
 
     var session = AppSession.shared
     var expos = [Expo]()
-    var delegate: TableDataReceiver?
+    var delegate: ExpoDataReceiver?
 
     // MARK: - Lifecycle methods
 
@@ -49,16 +49,11 @@ class MyExpoListTableViewController: UITableViewController {
     // MARK: - Load data
 
     func loadData() {
-        guard case .loggedIn(let user) = session.state else { return }
-        user.getOrganizedExpos { [weak self] result in
+        session.synchronize { [weak self] in
             guard let self = self else { return }
-            switch result {
-            case .success(let expos):
-                self.expos = expos
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
+            guard case .loggedIn(let user) = self.session.state else { return }
+            self.expos = user.organizedExpos
+            self.tableView.reloadData()
         }
     }
 
@@ -99,14 +94,18 @@ class MyExpoListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        expos[indexPath.section].випіліца { [weak self] result in
-            guard let self = self else { return }
+        let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Deleting expo \"\(expos[indexPath.section].name)\"...")
+        present(alert, animated: true, completion: nil)
+        expos[indexPath.section].delete { [weak self, weak alert] result in
+            guard let self = self, let alert = alert else { return }
             switch result {
             case .success:
                 self.expos.remove(at: indexPath.section)
                 self.tableView.reloadData()
+                alert.dismiss(animated: true, completion: nil)
             case .failure(let error):
-                print(error)
+                debugPrint(error)
+                alert.dismiss(animated: true, completion: nil)
             }
         }
     }

@@ -72,6 +72,21 @@ class AppSession {
         }
     }
 
+    func synchronize(completion: @escaping () -> Void) {
+        guard case .loggedIn(let user) = state else { return }
+        APIClient.getUser(login: user.login) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let user):
+                self.state = .loggedIn(user)
+            case .failure(let error):
+                debugPrint(error)
+                // TODO: maybe logout?
+            }
+            completion()
+        }
+    }
+
     private func updateUserSession() {
         let defaults = UserDefaults.standard
         switch state {
@@ -92,17 +107,18 @@ class AppSession {
     }
 
     private init() {
-        let defaults = UserDefaults.standard
-        if let id = defaults.integer(forKey: .userID),
-            let name = defaults.string(forKey: .name),
-            let username = defaults.string(forKey: .username),
-            let email = defaults.string(forKey: .email),
-            let _ = defaults.string(forKey: .jwt) {
-            let isOrganizer = defaults.bool(forKey: .isOrganizer)
-            let user = User(id: id, name: name, username: username, isOrganizer: isOrganizer, email: email)
-            self.state = .loggedIn(user)
-        } else {
-            self.state = .loggedOut
-        }
+//        let defaults = UserDefaults.standard
+//        if let id = defaults.integer(forKey: .userID),
+//            let name = defaults.string(forKey: .name),
+//            let username = defaults.string(forKey: .username),
+//            let email = defaults.string(forKey: .email),
+//            let _ = defaults.string(forKey: .jwt) {
+//            let isOrganizer = defaults.bool(forKey: .isOrganizer)
+//            let user = User(id: id, name: name, username: username, isOrganizer: isOrganizer, email: email)
+//            self.state = .loggedIn(user)
+//        } else {
+//            self.state = .loggedOut
+//        }
+        self.state = .loggedOut
     }
 }

@@ -11,29 +11,18 @@ import Foundation
 
 class User: Identifiable, Codable {
     let id: Int
-    var name: String
-    var login: String
-    var email: String
-    let isOrganizer: Bool
+    let name: String
+    let login: String
+    let email: String
+    var isOrganizer: Bool
+    var organizedExpos: [Expo]
     // Backend KEKS
-    let isSuperadmin: Bool
-    let isUser: Bool
+    var isSuperadmin: Bool
+    var isUser: Bool
     let createdAt: Date
-    var updatedAt: Date
+    let updatedAt: Date
 
-    init(id: Int, name: String, username: String, isOrganizer: Bool, email: String) {
-        self.id = id
-        self.name = name
-        self.login = username
-        self.isOrganizer = isOrganizer
-        self.email = email
-        self.isSuperadmin = false
-        self.isUser = true
-        self.createdAt = Date()
-        self.updatedAt = Date()
-    }
-
-    enum UserCodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case login
@@ -43,21 +32,27 @@ class User: Identifiable, Codable {
         case isUser = "user_role"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+
+        case organizedExpos = "expos"
     }
 
-    required init(from decoder: Decoder) throws {
-        let userContainer = try decoder.container(keyedBy: UserCodingKeys.self)
-
-        self.id = try userContainer.decode(Int.self, forKey: .id)
-        self.name = try userContainer.decode(String.self, forKey: .name)
-        self.login = try userContainer.decode(String.self, forKey: .login)
-        self.email = try userContainer.decode(String.self, forKey: .email)
-        self.isOrganizer = try userContainer.decode(Bool.self, forKey: .isOrganizer)
-        self.isSuperadmin = try userContainer.decode(Bool.self, forKey: .isSuperadmin)
-        self.isUser = try userContainer.decode(Bool.self, forKey: .isUser)
-        self.createdAt = try userContainer.decode(Date.self, forKey: .createdAt)
-        self.updatedAt = try userContainer.decode(Date.self, forKey: .updatedAt)
-    }
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//
+//        self.id = try container.decode(Int.self, forKey: .id)
+//        self.name = try container.decode(String.self, forKey: .name)
+//        self.login = try container.decode(String.self, forKey: .login)
+//        self.email = try container.decode(String.self, forKey: .email)
+//        self.isOrganizer = try container.decode(Bool.self, forKey: .isOrganizer)
+//
+//        self.isSuperadmin = try container.decode(Bool.self, forKey: .isSuperadmin)
+//        self.isUser = try container.decode(Bool.self, forKey: .isUser)
+//        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
+//        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+//
+//        let expoContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .organizedExpos)
+//        self.organizedExpos = try expoContainer.decode([Expo].self, forKey: .organizedExpos)
+//    }
 }
 
 extension User: Hashable, Equatable {
@@ -73,21 +68,23 @@ extension User: Hashable, Equatable {
 // MARK: - Accessing remote data
 
 extension User {
-    func getOrganizedExpos(completion: @escaping (Result<[Expo], AFError>) -> Void) {
-        APIClient.getAllExpos(organizerID: id, completion: completion)
-    }
-    
     func visit(expoID: Int, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
         APIClient.visit(userID: id, expoID: expoID, completion: completion)
     }
 
-    func like(_ expo: Expo, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
-        APIClient.like(userID: id, expoID: expo.id, completion: completion)
+    func like(_ expo: Expo, value: Bool, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        APIClient.like(userID: id, expoID: expo.id, value: value, completion: completion)
     }
 
-    func dislike(_ expo: Expo) {}
+    func like(_ expo: Expo, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        like(expo, value: true, completion: completion)
+    }
 
-    func likes(_ expo: Expo) -> Bool {
-        false
+    func dislike(_ expo: Expo, completion: @escaping (Result<UserToExpo, AFError>) -> Void) {
+        like(expo, value: false, completion: completion)
+    }
+
+    func comment(on expo: Expo, with text: String, completion: @escaping (Result<Comment, AFError>) -> Void) {
+        APIClient.createComment(userID: id, expoID: expo.id, text: text, completion: completion)
     }
 }

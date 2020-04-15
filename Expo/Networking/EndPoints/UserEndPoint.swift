@@ -13,7 +13,7 @@ enum UserEndPoint {
 
     // MARK: Likes and visits
 
-    case like(userID: Int, expoID: Int)
+    case like(userID: Int, expoID: Int, value: Bool)
     case visit(userID: Int, expoID: Int)
 
     // MARK: User
@@ -40,9 +40,9 @@ extension UserEndPoint: EndPointType {
     var path: String {
         switch self {
         case .like:
-            return "/like"
+            return "/likes"
         case .visit:
-            return "/visit"
+            return "/visits"
         case .getAllUsers:
             return "/users"
         case .getUser(let login), .updateUser(let login, _, _, _):
@@ -52,7 +52,12 @@ extension UserEndPoint: EndPointType {
 
     var task: HTTPTask {
         switch self {
-        case .like(let userID, let expoID), .visit(let userID, let expoID):
+        case .like(let userID, let expoID, let value):
+            return .requestWithParametersAndAuth(bodyParameters: [.userID: userID,
+                                                                  .expoID: expoID,
+                                                                  .liked: value],
+                                                 urlParameters: nil)
+        case .visit(let userID, let expoID):
             return .requestWithParametersAndAuth(bodyParameters: [.userID: userID,
                                                                   .expoID: expoID],
                                                  urlParameters: nil)

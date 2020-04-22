@@ -1,0 +1,66 @@
+/* 
+  Localization.strings
+  Expo
+
+  Created by Nikandr Marhal on 19.04.2020.
+  Copyright © 2020 Nikandr Marhal. All rights reserved.
+*/
+
+// MARK: - default strings
+"Create" = "Create";
+"Submit" = "Submit";
+"Cancel" = "Cancel";
+"Save" = "Save";
+"Edit" = "Edit";
+"Open" = "Open";
+"Saved!" = "Saved!";
+"Please wait" = "Please wait";
+
+// MARK: - deleting expo
+
+"Deleting expo" = "Deleting expo";
+
+// MARK: - creating and updating expo
+
+"Create new expo" = "Create new expo";
+"Creating new Expo" = "Creating new Expo";
+"You have created your expo" = "You have created your expo";
+"You have updated your expo" = "You have updated your expo";
+"Creating failed" = "Creating failed";
+"Could not create expo" = "Could not create expo";
+"Saving Expo" = "Saving Expo";
+"Updating failed" = "Updating failed";
+"Could not update Expo" = "Could not update Expo";
+
+// MARK: - profile
+
+"Updating your profile" = "Updating your profile";
+"You will see your updated profile immediately" = "You will see your updated profile immediately";
+"Could not update profile" = "Could not update profile";
+"This field cannot be empty" = "This field cannot be empty";
+"Must be at least 3 characters long and have no spaces" = "Must be at least 3 characters long and have no spaces";
+
+// MARK: - login
+
+"Logging in" = "Logging in";
+"Login failed" = "Login failed";
+"Invalid login and password combination" = "Invalid login and password combination";
+
+// MARK: - sign up
+
+"Creating your account" = "Creating your account";
+"Your account created" = "Your account created";
+"Go ahead and log in!" = "Go ahead and log in!";
+"Sign up failed" = "Sign up failed";
+
+// MARK: - comments
+
+"Deleting your comment" = "Deleting your comment";
+"What do you think about" = "What do you think about";
+"Add your comment to share an opinion" = "Add your comment to share an opinion";
+"Please, type in your comment" = "Please, type in your comment";
+"Problem with adding your comment. Please, try again later" = "Problem with adding your comment. Please, try again later";
+
+// MARK: - expo screen
+
+"Download Expo" = "Download Expo";

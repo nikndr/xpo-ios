@@ -1,0 +1,234 @@
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "0kE-De-RJ1"; */
+"0kE-De-RJ1.text" = "Username";
+
+/* Class = "UINavigationItem"; title = "Log in to your Xpo"; ObjectID = "1lg-7G-ApD"; */
+"1lg-7G-ApD.title" = "Log in to your Xpo";
+
+/* Class = "UILabel"; text = "error message"; ObjectID = "34x-eH-4fa"; */
+"34x-eH-4fa.text" = "error message";
+
+/* Class = "UIButton"; normalTitle = "Add Comment!"; ObjectID = "38J-2B-uTw"; */
+"38J-2B-uTw.normalTitle" = "Add Comment!";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "5LD-Oz-pvz"; */
+"5LD-Oz-pvz.text" = "Password";
+
+/* Class = "UITextField"; placeholder = "Your new password"; ObjectID = "9Ue-nv-nGy"; */
+"9Ue-nv-nGy.placeholder" = "Your new password";
+
+/* Class = "UILabel"; text = "Full name"; ObjectID = "ADg-L8-qJL"; */
+"ADg-L8-qJL.text" = "Full name";
+
+/* Class = "UIButton"; normalTitle = "I have an Account"; ObjectID = "AZd-d4-xwM"; */
+"AZd-d4-xwM.normalTitle" = "I have an Account";
+
+/* Class = "UITextField"; text = "username"; ObjectID = "B6n-yT-Wcp"; */
+"B6n-yT-Wcp.text" = "username";
+
+/* Class = "UILabel"; text = "23.04.2020, 10:00 – 24.05.2020, 22:00"; ObjectID = "Bk8-sH-sdi"; */
+"Bk8-sH-sdi.text" = "23.04.2020, 10:00 – 24.05.2020, 22:00";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "C3i-HU-fzk"; */
+"C3i-HU-fzk.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "Log out"; ObjectID = "DHO-rH-OJZ"; */
+"DHO-rH-OJZ.text" = "Log out";
+
+/* Class = "UIButton"; normalTitle = "Pick Marker"; ObjectID = "F9U-KT-Bbn"; */
+"F9U-KT-Bbn.normalTitle" = "Pick Marker";
+
+/* Class = "UILabel"; text = "Dive into the world of augmented reality.\nBuild unparalleled augmented reality experiences for hundreds of millions of users on iOS and iPadOS, the biggest AR platforms in the world. With powerful frameworks like ARKit and RealityKit, and creative tools like Reality Composer and Reality Converter, it’s never been easier to bring your ideas to life in AR."; ObjectID = "FVo-hB-gqm"; */
+"FVo-hB-gqm.text" = "Dive into the world of augmented reality.\nBuild unparalleled augmented reality experiences for hundreds of millions of users on iOS and iPadOS, the biggest AR platforms in the world. With powerful frameworks like ARKit and RealityKit, and creative tools like Reality Composer and Reality Converter, it’s never been easier to bring your ideas to life in AR.";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "GK6-o4-z5h"; */
+"GK6-o4-z5h.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "error message"; ObjectID = "Gej-eV-p8y"; */
+"Gej-eV-p8y.text" = "error message";
+
+/* Class = "UITextView"; text = "Create description for your Expo"; ObjectID = "Gjv-6d-y3C"; */
+"Gjv-6d-y3C.text" = "Create description for your Expo";
+
+/* Class = "UILabel"; text = "+"; ObjectID = "H9h-zR-r2o"; */
+"H9h-zR-r2o.text" = "+";
+
+/* Class = "UILabel"; text = "I want to create my own Xpos"; ObjectID = "Hql-gZ-NyY"; */
+"Hql-gZ-NyY.text" = "I want to create my own Xpos";
+
+/* Class = "UILabel"; text = "Expoooooooooo"; ObjectID = "I7Y-MP-GP7"; */
+"I7Y-MP-GP7.text" = "Expoooooooooo";
+
+/* Class = "UINavigationItem"; title = "Xplore what's around"; ObjectID = "JKb-yU-OjH"; */
+"JKb-yU-OjH.title" = "Xplore what's around";
+
+/* Class = "UIButton"; normalTitle = "Create new Expo"; ObjectID = "KLy-D0-En5"; */
+"KLy-D0-En5.normalTitle" = "Create new Expo";
+
+/* Class = "UILabel"; text = "My Expos"; ObjectID = "LYP-Ag-XJV"; */
+"LYP-Ag-XJV.text" = "My Expos";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "MvL-i4-D8A"; */
+"MvL-i4-D8A.text" = "Password";
+
+/* Class = "UITextField"; placeholder = "Expo name"; ObjectID = "NlA-tX-9IA"; */
+"NlA-tX-9IA.placeholder" = "Expo name";
+
+/* Class = "UITextField"; placeholder = "Expo location"; ObjectID = "OFw-cs-iBg"; */
+"OFw-cs-iBg.placeholder" = "Expo location";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "Okf-tH-INT"; */
+"Okf-tH-INT.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Download Expo"; ObjectID = "P4n-6D-Q0I"; */
+"P4n-6D-Q0I.normalTitle" = "Download Expo";
+
+/* Class = "UITextField"; text = "Full Name"; ObjectID = "QM9-Me-xJP"; */
+"QM9-Me-xJP.text" = "Full Name";
+
+/* Class = "UINavigationItem"; title = "Create or Edit Expo"; ObjectID = "Qsx-LH-Bzd"; */
+"Qsx-LH-Bzd.title" = "Create or Edit Expo";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "S9F-2V-fci"; */
+"S9F-2V-fci.title" = "Back";
+
+/* Class = "UINavigationItem"; title = "Expo Name"; ObjectID = "SQ2-5x-8as"; */
+"SQ2-5x-8as.title" = "Expo Name";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "TRw-8m-0bj"; */
+"TRw-8m-0bj.text" = "0";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "ULo-Y8-EnA"; */
+"ULo-Y8-EnA.text" = "Password";
+
+/* Class = "UINavigationItem"; title = "Comments"; ObjectID = "UeQ-XW-1pX"; */
+"UeQ-XW-1pX.title" = "Comments";
+
+/* Class = "UITextField"; placeholder = "Start date"; ObjectID = "VUt-3f-C3e"; */
+"VUt-3f-C3e.placeholder" = "Start date";
+
+/* Class = "UINavigationItem"; title = "Welcome to Xpo"; ObjectID = "WTG-bl-UdC"; */
+"WTG-bl-UdC.title" = "Welcome to Xpo";
+
+/* Class = "UITabBarItem"; title = "Expo View"; ObjectID = "We1-vg-nxd"; */
+"We1-vg-nxd.title" = "Expo View";
+
+/* Class = "UINavigationItem"; title = "Create new Account"; ObjectID = "WqE-O3-usb"; */
+"WqE-O3-usb.title" = "Create new Account";
+
+/* Class = "UITextField"; placeholder = "End date"; ObjectID = "X4p-7c-SYa"; */
+"X4p-7c-SYa.placeholder" = "End date";
+
+/* Class = "UILabel"; text = "23.04.2020–31.07.2020"; ObjectID = "X61-ns-kVB"; */
+"X61-ns-kVB.text" = "23.04.2020–31.07.2020";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "XsD-HC-acN"; */
+"XsD-HC-acN.text" = "0";
+
+/* Class = "UINavigationItem"; title = "Expo Name"; ObjectID = "Xsk-Ea-QHm"; */
+"Xsk-Ea-QHm.title" = "Expo Name";
+
+/* Class = "UILabel"; text = "Edit profile"; ObjectID = "Yjc-rj-gQb"; */
+"Yjc-rj-gQb.text" = "Edit profile";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "ZNj-wu-eof"; */
+"ZNj-wu-eof.title" = "Back";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "azP-gH-Zyj"; */
+"azP-gH-Zyj.text" = "Title";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "b1v-db-PVn"; */
+"b1v-db-PVn.title" = "Back";
+
+/* Class = "UINavigationItem"; title = "Profile"; ObjectID = "bQC-YJ-pCt"; */
+"bQC-YJ-pCt.title" = "Profile";
+
+/* Class = "UIButton"; normalTitle = "I don't have an Account"; ObjectID = "cSj-0p-R8m"; */
+"cSj-0p-R8m.normalTitle" = "I don't have an Account";
+
+/* Class = "UIButton"; normalTitle = "Create Xpo Account"; ObjectID = "cSz-8l-Zbf"; */
+"cSz-8l-Zbf.normalTitle" = "Create Xpo Account";
+
+/* Class = "UILabel"; text = "Location Name"; ObjectID = "cgr-83-ebB"; */
+"cgr-83-ebB.text" = "Location Name";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "cs8-2e-PDP"; */
+"cs8-2e-PDP.text" = "Username";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "d5z-9g-8h4"; */
+"d5z-9g-8h4.text" = "Email";
+
+/* Class = "UILabel"; text = "Full name"; ObjectID = "d7e-KH-qVH"; */
+"d7e-KH-qVH.text" = "Full name";
+
+/* Class = "UILabel"; text = "Expoooooooooo"; ObjectID = "dl8-wQ-zIn"; */
+"dl8-wQ-zIn.text" = "Expoooooooooo";
+
+/* Class = "UINavigationItem"; title = "My Expos"; ObjectID = "eg6-hd-hcz"; */
+"eg6-hd-hcz.title" = "My Expos";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "fVY-dl-vHp"; */
+"fVY-dl-vHp.normalTitle" = "Log In";
+
+/* Class = "UILabel"; text = "Expo by Organizer Name"; ObjectID = "gM0-q3-fIl"; */
+"gM0-q3-fIl.text" = "Expo by Organizer Name";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "gmo-u3-4Sa"; */
+"gmo-u3-4Sa.text" = "Username";
+
+/* Class = "UITextField"; placeholder = "Enter your username"; ObjectID = "h8R-3R-rDY"; */
+"h8R-3R-rDY.placeholder" = "Enter your username";
+
+/* Class = "UITextField"; text = "nikndr"; ObjectID = "h8R-3R-rDY"; */
+"h8R-3R-rDY.text" = "nikndr";
+
+/* Class = "UIButton"; normalTitle = "Pick Model"; ObjectID = "kL3-Gj-twg"; */
+"kL3-Gj-twg.normalTitle" = "Pick Model";
+
+/* Class = "UILabel"; text = "Nikandr Marhal"; ObjectID = "kaV-9R-MJb"; */
+"kaV-9R-MJb.text" = "Nikandr Marhal";
+
+/* Class = "UITextField"; placeholder = "Enter your password"; ObjectID = "m9l-g9-D0m"; */
+"m9l-g9-D0m.placeholder" = "Enter your password";
+
+/* Class = "UITextField"; text = "12345678"; ObjectID = "m9l-g9-D0m"; */
+"m9l-g9-D0m.text" = "12345678";
+
+/* Class = "UITextField"; placeholder = "Create a secure password"; ObjectID = "n0d-a3-oW8"; */
+"n0d-a3-oW8.placeholder" = "Create a secure password";
+
+/* Class = "UILabel"; text = "error message"; ObjectID = "nnI-nm-fAt"; */
+"nnI-nm-fAt.text" = "error message";
+
+/* Class = "UILabel"; text = "Expo by Organizer Name"; ObjectID = "oie-gR-uDE"; */
+"oie-gR-uDE.text" = "Expo by Organizer Name";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "pkb-4j-Q8s"; */
+"pkb-4j-Q8s.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Text Observing"; ObjectID = "plM-OP-w53"; */
+"plM-OP-w53.title" = "Text Observing";
+
+/* Class = "UITextField"; placeholder = "Enter your full name"; ObjectID = "qGG-zM-i18"; */
+"qGG-zM-i18.placeholder" = "Enter your full name";
+
+/* Class = "UILabel"; text = "model1_1.obj"; ObjectID = "rhl-bq-Cih"; */
+"rhl-bq-Cih.text" = "model1_1.obj";
+
+/* Class = "UILabel"; text = "marker1.jpg"; ObjectID = "tZt-z3-ShI"; */
+"tZt-z3-ShI.text" = "marker1.jpg";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "vDN-es-Cl7"; */
+"vDN-es-Cl7.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "vtQ-QN-gkC"; */
+"vtQ-QN-gkC.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "23.04.2020–31.07.2020"; ObjectID = "vtp-OW-hqh"; */
+"vtp-OW-hqh.text" = "23.04.2020–31.07.2020";
+
+/* Class = "UITextField"; placeholder = "You will use it for Log In"; ObjectID = "xmZ-yY-cKd"; */
+"xmZ-yY-cKd.placeholder" = "You will use it for Log In";
+
+/* Class = "UITextField"; placeholder = "To reach you"; ObjectID = "ylG-9g-H35"; */
+"ylG-9g-H35.placeholder" = "To reach you";

@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "filename" : "black-cat.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "unit" : "centimeters",
+    "width" : 12.562814070351759
+  }
+}

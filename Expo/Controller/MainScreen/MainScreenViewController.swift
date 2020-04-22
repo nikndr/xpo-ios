@@ -15,6 +15,7 @@ class MainScreenViewController: UIViewController {
             expoTableChild?.delegate = self
         }
     }
+    
     var selectedExpo: Expo?
     
     // MARK: - Outlets
@@ -34,12 +35,8 @@ class MainScreenViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        let image = UIImage(systemName: "gear")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(openProfile))
     }
     
     // MARK: - UI configuration
@@ -59,9 +56,14 @@ class MainScreenViewController: UIViewController {
             break
         }
     }
+    
+    @objc func openProfile() {
+        performSegue(withIdentifier: .showProfile, sender: self)
+    }
 }
 
 // MARK: - Conformation to TableDataReceiver
+
 extension MainScreenViewController: ExpoDataReceiver {
     func didSelectCell(withExpo expo: Expo) {
         selectedExpo = expo

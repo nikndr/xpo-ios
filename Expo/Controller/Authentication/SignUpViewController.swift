@@ -92,14 +92,18 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
 
     func createAccount() {
         if allFieldsFilled {
-            let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Creating your account...")
+            let alertTitle = localizedString(for: .pleaseWait)
+            let alertBody = "\(localizedString(for: .creatingYourAccount))"
+            let alert = UIAlertController.loadingView(withTitle: alertTitle, message: alertBody)
             present(alert, animated: true, completion: nil)
             session.signUp(withName: fullNameTextField.text!, username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, isOrganizer: organizerAccountSwitch.isOn) { result in
                 switch result {
                 case .success:
                     alert.dismiss(animated: true) { [weak self] in
                         guard let self = self else { return }
-                        let alert = UIAlertController(title: "Your account created", message: "Go ahead and log in!", preferredStyle: .alert)
+                        let alertTitle = localizedString(for: .accountCreated)
+                        let alertBody = localizedString(for: .goAheadAndLogInExc)
+                        let alert = UIAlertController(title: alertTitle, message: alertBody, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
                             self?.navigationController?.popViewController(animated: true)
                         }))
@@ -108,7 +112,8 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
                 case .failure(let error):
                     alert.dismiss(animated: true) { [weak self] in
                         guard let self = self else { return }
-                        let alert = UIAlertController(title: "Sign up failed", message: error.localizedDescription, preferredStyle: .alert)
+                        let alertTitle = localizedString(for: .signUpFailed)
+                        let alert = UIAlertController(title: alertTitle, message: error.localizedDescription, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(alert, animated: true)
                     }
@@ -117,9 +122,3 @@ class SignUpViewController: AuthenticationViewController, FormDataSender {
         }
     }
 }
-
-// extension SignUpViewController: SegueHandler {
-//    enum SegueIdentifier: String {
-//        case createAccountAndLogIn
-//    }
-// }

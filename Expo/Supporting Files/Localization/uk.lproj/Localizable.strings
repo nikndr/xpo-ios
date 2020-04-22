@@ -8,60 +8,60 @@
 
 
 // MARK: - default strings
-"Create" = "Створити";
-"Submit" = "Прийняти";
-"Cancel" = "Відмінити";
-"Save" = "Зберегти";
-"Edit" = "Редагувати";
-"Open" = "Відкрити";
-"Saved!" = "Збережено!";
-"Please wait" = "Зачекайте, будь ласка";
+"create" = "Створити";
+"submit" = "Прийняти";
+"cancel" = "Відмінити";
+"save" = "Зберегти";
+"edit" = "Редагувати";
+"open" = "Відкрити";
+"savedExc" = "Збережено!";
+"pleaseWait" = "Зачекайте, будь ласка";
 
 // MARK: - deleting expo
 
-"Deleting expo" = "Видаляємо виставку";
+"deletingExpo" = "Видаляємо виставку";
 
 // MARK: - creating and updating expo
 
-"Create new expo" = "Створити нову виставку";
-"Creating new Expo" = "Створюємо нову виставку";
-"You have created your expo" = "Виставку успішно створено";
-"You have updated your expo" = "Виставку успішно оновлено";
-"Creating failed" = "Помилка створення";
-"Could not create expo" = "Ми не змогли створити виставку";
-"Saving Expo" = "Зберігаємо виставку";
-"Updating failed" = "Помилка оновлення";
-"Could not update Expo" = "Ми не змогли оновити виставку";
+"createNewExpo" = "Створити нову виставку";
+"creatingNewExpo" = "Створюємо нову виставку";
+"youHaveCreated" = "Виставку успішно створено";
+"youHaveUpdated" = "Виставку успішно оновлено";
+"creatingFailed" = "Помилка створення";
+"couldNotCreateExpo" = "Ми не змогли створити виставку";
+"savingExpo" = "Зберігаємо виставку";
+"updatingFailed" = "Помилка оновлення";
+"couldNotUpdateExpo" = "Ми не змогли оновити виставку";
 
 // MARK: - profile
 
-"Updating your profile" = "Оновлюємо ваш профіль";
-"You will see your updated profile immediately" = "Ви побачите змінений профіль одразу ж";
-"Could not update profile" = "Ми не змогли оновити профіль";
-"This field cannot be empty" = "Потрібно заповнити це поле";
-"Must be at least 3 characters long and have no spaces" = "Мінімальна довжина - 3 символи, без пробілів";
+"updatingYourProfile" = "Оновлюємо ваш профіль";
+"youWillSeeYourProfile" = "Ви побачите змінений профіль одразу ж";
+"couldNotUpdateProfile" = "Ми не змогли оновити профіль";
+"fieldCannotBeEmpty" = "Потрібно заповнити це поле";
+"usernameError" = "Мінімальна довжина - 3 символи, без пробілів";
 
 // MARK: - login
 
-"Logging in" = "Авторизуємо";
-"Login failed" = "Помилка авторизації";
-"Invalid login and password combination" = "Невірні логін та пароль";
+"loggingIn" = "Авторизуємо";
+"loginFailed" = "Помилка авторизації";
+"invalidLoginAndPassword" = "Невірні логін та пароль";
 
 // MARK: - sign up
 
-"Creating your account" = "Створюємо Обліковий запис";
-"Your account created" = "Обліковий запис створено";
-"Go ahead and log in!" = "Хутчіш авторизуйтеся!";
-"Sign up failed" = "Помилка реєстрації";
+"creatingYourAccount" = "Створюємо акаунт";
+"accountCreated" = "Акаутн створено";
+"goAheadAndLogInExc" = "Хутчіш авторизуйтеся!";
+"signUpFailed" = "Помилка реєстрації";
 
 // MARK: - comments
 
-"Deleting your comment" = "Видаляємо ваш коментар";
-"What do you think about" = "Що думаєте про";
-"Add your comment to share an opinion" = "Поділіться думками в коментарі";
-"Please, type in your comment" = "Напишіть коментар, будь ласка";
-"Problem with adding your comment. Please, try again later" = "Не вдалося додати коментар, спробуйте ще раз";
+"commentPrompt" = "Що думаєте про";
+"addComment" = "Поділіться думками в коментарі";
+"pleaseTypeInComment" = "Напишіть ваш коментар";
+"problemWithAddingComment" = "Не вдалося додати коментар. Спробуйте ще раз";
+"deletingComment" = "Видаляємо ваш коментар";
 
 // MARK: - expo screen
 
-"Download Expo" = "Завантажити";
+"downloadExpo" = "Завантажити";

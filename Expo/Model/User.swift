@@ -32,27 +32,8 @@ class User: Identifiable, Codable {
         case isUser = "user_role"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-
         case organizedExpos = "expos"
     }
-
-//    required init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//
-//        self.id = try container.decode(Int.self, forKey: .id)
-//        self.name = try container.decode(String.self, forKey: .name)
-//        self.login = try container.decode(String.self, forKey: .login)
-//        self.email = try container.decode(String.self, forKey: .email)
-//        self.isOrganizer = try container.decode(Bool.self, forKey: .isOrganizer)
-//
-//        self.isSuperadmin = try container.decode(Bool.self, forKey: .isSuperadmin)
-//        self.isUser = try container.decode(Bool.self, forKey: .isUser)
-//        self.createdAt = try container.decode(Date.self, forKey: .createdAt)
-//        self.updatedAt = try container.decode(Date.self, forKey: .updatedAt)
-//
-//        let expoContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .organizedExpos)
-//        self.organizedExpos = try expoContainer.decode([Expo].self, forKey: .organizedExpos)
-//    }
 }
 
 extension User: Hashable, Equatable {

@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+struct ImgurResponse: Codable {
+    let data: DataClass
+    let success: Bool
+    let status: Int
+}
+
+struct DataClass: Codable {
+    let link: String
+}

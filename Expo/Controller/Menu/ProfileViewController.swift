@@ -42,6 +42,7 @@ class ProfileViewController: UIViewController, FormDataSender {
     // MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
+        print("update")
         updateProfile()
     }
     
@@ -51,12 +52,26 @@ class ProfileViewController: UIViewController, FormDataSender {
         super.viewDidLoad()
         configureUIElements()
         manageTextFieldEditing()
+        addGestures()
+    }
+    
+    // MARK: - Gestures
+    
+    func addGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     // MARK: - Updating
     
     func updateProfile() {
-        let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Updating your profile")
+        let alertTitle = localizedString(for: .pleaseWait)
+        let alertBody = localizedString(for: .updatingYourProfile)
+        let alert = UIAlertController.loadingView(withTitle: alertTitle, message: alertBody)
         present(alert, animated: true, completion: nil)
         session.updateUser(newName: fullNameTextField.text,
                            newLogin: usernameFieldEdited ? usernameTextField.text : nil,
@@ -66,7 +81,9 @@ class ProfileViewController: UIViewController, FormDataSender {
             case .success(let user):
                 alert.dismiss(animated: true) { [weak self] in
                     guard let self = self else { return }
-                    let alert = UIAlertController(title: "Saved!", message: "You will see your updated profile immediately.", preferredStyle: .alert)
+                    let alertTitle = localizedString(for: .savedExc)
+                    let alertBody = localizedString(for: .youWillSeeYourProfile)
+                    let alert = UIAlertController(title: alertTitle, message: alertBody, preferredStyle: .alert)
                     self.present(alert, animated: true, completion: nil)
                     self.user = user
                     self.configureUIElements()
@@ -76,10 +93,12 @@ class ProfileViewController: UIViewController, FormDataSender {
                     }
                 }
             case .failure(let error):
-                print("In updateProfile(): \(error)")
+                debugPrint("In updateProfile(): \(error)")
                 alert.dismiss(animated: true) { [weak self] in
                     guard let self = self else { return }
-                    let alert = UIAlertController(title: "Updating failed", message: "Could not update profile", preferredStyle: .alert)
+                    let alertTitle = localizedString(for: .updatingFailed)
+                    let alertBody = localizedString(for: .couldNotUpdateProfile)
+                    let alert = UIAlertController(title: alertTitle, message: alertBody, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
@@ -180,7 +199,7 @@ class ProfileViewController: UIViewController, FormDataSender {
     
     func restrictEmptyText(for textField: UITextField) {
         if textField.text?.count == 0 {
-            showErrorLabel(for: textField, withMessage: "This field cannot be empty")
+            showErrorLabel(for: textField, withMessage: localizedString(for: .fieldCannotBeEmpty))
         } else {
             hideErrorLabel(for: textField)
         }
@@ -191,7 +210,7 @@ class ProfileViewController: UIViewController, FormDataSender {
             hide(errorLabel: usernameErrorLabel)
             saveButton.setEnabled(userFieldsFilled)
         } else {
-            show(errorLabel: usernameErrorLabel, withText: "Must be at least 3 characters long and have no spaces")
+            show(errorLabel: usernameErrorLabel, withText: localizedString(for: .usernameError))
         }
     }
 }

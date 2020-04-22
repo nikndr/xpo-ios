@@ -53,7 +53,7 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
             break
         }
     }
-    
+
     func showMainScreen() {
         let mainScreenVC = UIStoryboard.instantiateMainScreenTabBarController()
         view.window?.rootViewController = mainScreenVC
@@ -85,7 +85,9 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
 
     func logIn() {
         if allFieldsFilled {
-            let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Logging in...")
+            let alertTitle = localizedString(for: .pleaseWait)
+            let alertBody = "\(localizedString(for: .loggingIn))..."
+            let alert = UIAlertController.loadingView(withTitle: alertTitle, message: alertBody)
             present(alert, animated: true, completion: nil)
             session.logIn(withUsername: usernameTextField.text!, password: passwordTextField.text!) { result in
                 switch result {
@@ -96,7 +98,9 @@ class LogInViewController: AuthenticationViewController, FormDataSender {
                 case .failure(let error):
                     print(error)
                     alert.dismiss(animated: true) { [weak self] in
-                        let alert = UIAlertController(title: "Login failed", message: "Invalid login and password combination", preferredStyle: .alert)
+                        let alertTitle = localizedString(for: .loginFailed)
+                        let alertBody = localizedString(for: .invalidLoginAndPassword)
+                        let alert = UIAlertController(title: alertTitle, message: alertBody, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self?.present(alert, animated: true)
                     }

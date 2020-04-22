@@ -1,5 +1,5 @@
 //
-//  UIButtonExtrnsion.swift
+//  UIButtonExtension.swift
 //  Expo
 //
 //  Created by Nikandr Marhal on 27.03.2020.

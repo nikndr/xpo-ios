@@ -13,13 +13,13 @@ enum ExpoEndPoint {
 
     case getAllExpos
     case getExpo(id: Int)
-    case createExpo(name: String, description: String, imageURL: String, startTime: Date, endTime: Date, locationName: String, userID: Int)
+    case createExpo(name: String, description: String, imageURL: String, startTime: String, endTime: String, locationName: String, userID: Int)
     case updateExpo(id: Int,
                     newName: String?,
                     newDescription: String?,
                     newImageURL: String?,
-                    newStartTime: Date?,
-                    newEndTime: Date?,
+                    newStartTime: String?,
+                    newEndTime: String?,
                     newLocationName: String?)
     case deleteExpo(id: Int)
 }

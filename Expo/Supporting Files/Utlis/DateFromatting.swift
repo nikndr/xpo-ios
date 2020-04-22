@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 extension DateFormatter {
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
@@ -20,16 +18,26 @@ extension DateFormatter {
         return formatter
     }()
     
+    class func iso8601String(from date: Date) -> String {
+        DateFormatter.iso8601Full.string(from: date)
+    }
+    
     enum DateTimeFormats: String {
         case dateSeparatedByPeriods = "MM.dd.yyyy"
         case timeSeparatedByColon = "HH:mm"
         case dateAndTime = "MM.dd.yyyy, HH:mm"
     }
 
-    class func formattedDateTime(from date: Date, withFormat format: DateTimeFormats) -> String {
+    class func formattedDateTime(from date: Date, withFormat format: DateTimeFormats = .dateAndTime) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format.rawValue
         return "\(formatter.string(from: date))"
+    }
+    
+    class func date(from string: String, withFormat format: DateTimeFormats = .dateAndTime) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format.rawValue
+        return formatter.date(from: string)
     }
 
     class func formatTimeString(from date: Date, format: DateTimeFormats = .timeSeparatedByColon) -> String {

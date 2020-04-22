@@ -37,7 +37,7 @@ class SettingsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
         case .editProfile:
-            guard case .loggedIn(let user) = session.state else { fatalError("юзер блядь де???") }
+            guard case .loggedIn(let user) = session.state else { fatalError("юзер блять де???") }
             let destination = segue.destination as! ProfileViewController
             destination.user = user
         default:

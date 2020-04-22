@@ -20,8 +20,9 @@ struct APIClient {
         return AF.request(route)
             .validate(statusCode: 200..<600)
             .responseDecodable(decoder: decoder) { (response: DataResponse<ResponseType, AFError>) in
+                
                 debugPrint(response)
-                if let auth = response.response?.allHeaderFields["Authorization"] as? String {
+                if let auth = response.response?.allHeaderFields[HTTPHeaderField.auth.rawValue] as? String {
                     UserDefaults.standard.setValue(value: auth, forKey: .jwt)
                 }
                 completion(response.result)
@@ -90,8 +91,8 @@ struct APIClient {
         request(route: ExpoEndPoint.createExpo(name: name,
                                                description: description,
                                                imageURL: imageURL,
-                                               startTime: startTime,
-                                               endTime: endTime,
+                                               startTime: DateFormatter.iso8601String(from: startTime),
+                                               endTime: DateFormatter.iso8601String(from: endTime),
                                                locationName: locationName,
                                                userID: userID),
                 completion: completion)
@@ -105,12 +106,20 @@ struct APIClient {
                            newEndTime: Date?,
                            newLocationName: String?,
                            completion: @escaping (Result<Expo, AFError>) -> Void) {
+        var startTime: String?
+        var endTime: String?
+        if let newStartTime = newStartTime {
+            startTime = DateFormatter.iso8601String(from: newStartTime)
+        }
+        if let newEndTime = newEndTime {
+            endTime = DateFormatter.iso8601String(from: newEndTime)
+        }
         request(route: ExpoEndPoint.updateExpo(id: id,
                                                newName: newName,
                                                newDescription: newDescription,
                                                newImageURL: newImageURL,
-                                               newStartTime: newStartTime,
-                                               newEndTime: newEndTime,
+                                               newStartTime: startTime,
+                                               newEndTime: endTime,
                                                newLocationName: newLocationName),
                 completion: completion)
     }

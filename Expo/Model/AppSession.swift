@@ -21,6 +21,7 @@ class AppSession {
 
     private(set) var state: State
     static let shared = AppSession()
+    
 
     func logIn(withUsername username: String, password: String, completion: ((Result<User, AFError>) -> Void)?) {
         APIClient.login(login: username, password: password) { [weak self] result in
@@ -107,18 +108,6 @@ class AppSession {
     }
 
     private init() {
-//        let defaults = UserDefaults.standard
-//        if let id = defaults.integer(forKey: .userID),
-//            let name = defaults.string(forKey: .name),
-//            let username = defaults.string(forKey: .username),
-//            let email = defaults.string(forKey: .email),
-//            let _ = defaults.string(forKey: .jwt) {
-//            let isOrganizer = defaults.bool(forKey: .isOrganizer)
-//            let user = User(id: id, name: name, username: username, isOrganizer: isOrganizer, email: email)
-//            self.state = .loggedIn(user)
-//        } else {
-//            self.state = .loggedOut
-//        }
         self.state = .loggedOut
     }
 }

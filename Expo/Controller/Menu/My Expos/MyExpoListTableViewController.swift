@@ -94,7 +94,9 @@ class MyExpoListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Deleting expo \"\(expos[indexPath.section].name)\"...")
+        let alertTitle = localizedString(for: .pleaseWait)
+        let alertBody = "\(localizedString(for: .deletingExpo)) \"\(expos[indexPath.section].name)\"..."
+        let alert = UIAlertController.loadingView(withTitle: alertTitle, message: alertBody)
         present(alert, animated: true, completion: nil)
         expos[indexPath.section].delete { [weak self, weak alert] result in
             guard let self = self, let alert = alert else { return }

@@ -51,10 +51,11 @@ class MyExposViewController: UIViewController {
         case .editExpo:
             let destination = segue.destination as! ManageExpoViewController
             destination.expo = selectedExpo!
-            destination.navigationItem.title = "Edit \(selectedExpo!.name)"
+            destination.mode = .edit
+   
         case .createExpo:
             let destination = segue.destination as! ManageExpoViewController
-            destination.navigationItem.title = "Create new Expo"
+            destination.mode = .create
         case .myExpoList, .editExpoAnother:
             break
         }

@@ -1,123 +1,123 @@
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "0kE-De-RJ1"; */
-"0kE-De-RJ1.text" = "Username";
+"0kE-De-RJ1.text" = "Логін";
 
 /* Class = "UINavigationItem"; title = "Log in to your Xpo"; ObjectID = "1lg-7G-ApD"; */
-"1lg-7G-ApD.title" = "Log in to your Xpo";
+"1lg-7G-ApD.title" = "Авторизуйтеся в Xpo";
 
 /* Class = "UILabel"; text = "error message"; ObjectID = "34x-eH-4fa"; */
-"34x-eH-4fa.text" = "error message";
+"34x-eH-4fa.text" = "помилка";
 
 /* Class = "UIButton"; normalTitle = "Add Comment!"; ObjectID = "38J-2B-uTw"; */
-"38J-2B-uTw.normalTitle" = "Add Comment!";
+"38J-2B-uTw.normalTitle" = "Додайте коментар!";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "5LD-Oz-pvz"; */
-"5LD-Oz-pvz.text" = "Password";
+"5LD-Oz-pvz.text" = "Пароль";
 
 /* Class = "UITextField"; placeholder = "Your new password"; ObjectID = "9Ue-nv-nGy"; */
-"9Ue-nv-nGy.placeholder" = "Your new password";
+"9Ue-nv-nGy.placeholder" = "Новий пароль";
 
 /* Class = "UILabel"; text = "Full name"; ObjectID = "ADg-L8-qJL"; */
-"ADg-L8-qJL.text" = "Full name";
+"ADg-L8-qJL.text" = "Повне ім'я";
 
 /* Class = "UIButton"; normalTitle = "I have an Account"; ObjectID = "AZd-d4-xwM"; */
-"AZd-d4-xwM.normalTitle" = "I have an Account";
+"AZd-d4-xwM.normalTitle" = "У мене є обліковий запис";
 
 /* Class = "UITextField"; text = "username"; ObjectID = "B6n-yT-Wcp"; */
-"B6n-yT-Wcp.text" = "username";
+"B6n-yT-Wcp.text" = "Логін";
 
 /* Class = "UILabel"; text = "23.04.2020, 10:00 – 24.05.2020, 22:00"; ObjectID = "Bk8-sH-sdi"; */
 "Bk8-sH-sdi.text" = "23.04.2020, 10:00 – 24.05.2020, 22:00";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "C3i-HU-fzk"; */
-"C3i-HU-fzk.normalTitle" = "Save";
+"C3i-HU-fzk.normalTitle" = "Зберегти";
 
 /* Class = "UILabel"; text = "Log out"; ObjectID = "DHO-rH-OJZ"; */
-"DHO-rH-OJZ.text" = "Log out";
+"DHO-rH-OJZ.text" = "Вийти";
 
 /* Class = "UIButton"; normalTitle = "Pick Marker"; ObjectID = "F9U-KT-Bbn"; */
-"F9U-KT-Bbn.normalTitle" = "Pick Marker";
+"F9U-KT-Bbn.normalTitle" = "Оберіть маркер";
 
 /* Class = "UILabel"; text = "Dive into the world of augmented reality.\nBuild unparalleled augmented reality experiences for hundreds of millions of users on iOS and iPadOS, the biggest AR platforms in the world. With powerful frameworks like ARKit and RealityKit, and creative tools like Reality Composer and Reality Converter, it’s never been easier to bring your ideas to life in AR."; ObjectID = "FVo-hB-gqm"; */
 "FVo-hB-gqm.text" = "Dive into the world of augmented reality.\nBuild unparalleled augmented reality experiences for hundreds of millions of users on iOS and iPadOS, the biggest AR platforms in the world. With powerful frameworks like ARKit and RealityKit, and creative tools like Reality Composer and Reality Converter, it’s never been easier to bring your ideas to life in AR.";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "GK6-o4-z5h"; */
-"GK6-o4-z5h.text" = "Subtitle";
+"GK6-o4-z5h.text" = "Підзаголовок";
 
 /* Class = "UILabel"; text = "error message"; ObjectID = "Gej-eV-p8y"; */
-"Gej-eV-p8y.text" = "error message";
+"Gej-eV-p8y.text" = "помилка";
 
 /* Class = "UITextView"; text = "Create description for your Expo"; ObjectID = "Gjv-6d-y3C"; */
-"Gjv-6d-y3C.text" = "Create description for your Expo";
+"Gjv-6d-y3C.text" = "Створіть опис для виставки";
 
 /* Class = "UILabel"; text = "+"; ObjectID = "H9h-zR-r2o"; */
 "H9h-zR-r2o.text" = "+";
 
 /* Class = "UILabel"; text = "I want to create my own Xpos"; ObjectID = "Hql-gZ-NyY"; */
-"Hql-gZ-NyY.text" = "I want to create my own Xpos";
+"Hql-gZ-NyY.text" = "Я хочу створювати власні виставки";
 
 /* Class = "UILabel"; text = "Expoooooooooo"; ObjectID = "I7Y-MP-GP7"; */
 "I7Y-MP-GP7.text" = "Expoooooooooo";
 
 /* Class = "UINavigationItem"; title = "Xplore what's around"; ObjectID = "JKb-yU-OjH"; */
-"JKb-yU-OjH.title" = "Xplore what's around";
+"JKb-yU-OjH.title" = "Досліджуйте";
 
 /* Class = "UIButton"; normalTitle = "Create new Expo"; ObjectID = "KLy-D0-En5"; */
-"KLy-D0-En5.normalTitle" = "Create new Expo";
+"KLy-D0-En5.normalTitle" = "Створити нову виставку";
 
 /* Class = "UILabel"; text = "My Expos"; ObjectID = "LYP-Ag-XJV"; */
-"LYP-Ag-XJV.text" = "My Expos";
+"LYP-Ag-XJV.text" = "Мої виставки";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "MvL-i4-D8A"; */
-"MvL-i4-D8A.text" = "Password";
+"MvL-i4-D8A.text" = "Пароль";
 
 /* Class = "UITextField"; placeholder = "Expo name"; ObjectID = "NlA-tX-9IA"; */
-"NlA-tX-9IA.placeholder" = "Expo name";
+"NlA-tX-9IA.placeholder" = "Назав";
 
 /* Class = "UITextField"; placeholder = "Expo location"; ObjectID = "OFw-cs-iBg"; */
-"OFw-cs-iBg.placeholder" = "Expo location";
+"OFw-cs-iBg.placeholder" = "Місце проведення";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "Okf-tH-INT"; */
 "Okf-tH-INT.text" = "0";
 
 /* Class = "UIButton"; normalTitle = "Download Expo"; ObjectID = "P4n-6D-Q0I"; */
-"P4n-6D-Q0I.normalTitle" = "Download Expo";
+"P4n-6D-Q0I.normalTitle" = "Завантажити";
 
 /* Class = "UITextField"; text = "Full Name"; ObjectID = "QM9-Me-xJP"; */
-"QM9-Me-xJP.text" = "Full Name";
+"QM9-Me-xJP.text" = "Повне ім'я";
 
 /* Class = "UINavigationItem"; title = "Create or Edit Expo"; ObjectID = "Qsx-LH-Bzd"; */
-"Qsx-LH-Bzd.title" = "Create or Edit Expo";
+"Qsx-LH-Bzd.title" = "Створити чи редагувати";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "S9F-2V-fci"; */
-"S9F-2V-fci.title" = "Back";
+"S9F-2V-fci.title" = "Назад";
 
 /* Class = "UINavigationItem"; title = "Expo Name"; ObjectID = "SQ2-5x-8as"; */
-"SQ2-5x-8as.title" = "Expo Name";
+"SQ2-5x-8as.title" = "Назва виставки";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "TRw-8m-0bj"; */
 "TRw-8m-0bj.text" = "0";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "ULo-Y8-EnA"; */
-"ULo-Y8-EnA.text" = "Password";
+"ULo-Y8-EnA.text" = "Пароль";
 
 /* Class = "UINavigationItem"; title = "Comments"; ObjectID = "UeQ-XW-1pX"; */
-"UeQ-XW-1pX.title" = "Comments";
+"UeQ-XW-1pX.title" = "Коментарі";
 
 /* Class = "UITextField"; placeholder = "Start date"; ObjectID = "VUt-3f-C3e"; */
-"VUt-3f-C3e.placeholder" = "Start date";
+"VUt-3f-C3e.placeholder" = "Дата початку";
 
 /* Class = "UINavigationItem"; title = "Welcome to Xpo"; ObjectID = "WTG-bl-UdC"; */
-"WTG-bl-UdC.title" = "Welcome to Xpo";
+"WTG-bl-UdC.title" = "Ласкаво просимо";
 
 /* Class = "UITabBarItem"; title = "Expo View"; ObjectID = "We1-vg-nxd"; */
-"We1-vg-nxd.title" = "Expo View";
+"We1-vg-nxd.title" = "Виставки";
 
 /* Class = "UINavigationItem"; title = "Create new Account"; ObjectID = "WqE-O3-usb"; */
-"WqE-O3-usb.title" = "Create new Account";
+"WqE-O3-usb.title" = "Створити новий обліковий запис";
 
 /* Class = "UITextField"; placeholder = "End date"; ObjectID = "X4p-7c-SYa"; */
-"X4p-7c-SYa.placeholder" = "End date";
+"X4p-7c-SYa.placeholder" = "Дата кінцю";
 
 /* Class = "UILabel"; text = "23.04.2020–31.07.2020"; ObjectID = "X61-ns-kVB"; */
 "X61-ns-kVB.text" = "23.04.2020–31.07.2020";
@@ -126,91 +126,91 @@
 "XsD-HC-acN.text" = "0";
 
 /* Class = "UINavigationItem"; title = "Expo Name"; ObjectID = "Xsk-Ea-QHm"; */
-"Xsk-Ea-QHm.title" = "Expo Name";
+"Xsk-Ea-QHm.title" = "Назва виставки";
 
 /* Class = "UILabel"; text = "Edit profile"; ObjectID = "Yjc-rj-gQb"; */
-"Yjc-rj-gQb.text" = "Edit profile";
+"Yjc-rj-gQb.text" = "Редагувати профіль";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "ZNj-wu-eof"; */
-"ZNj-wu-eof.title" = "Back";
+"ZNj-wu-eof.title" = "Назад";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "azP-gH-Zyj"; */
-"azP-gH-Zyj.text" = "Title";
+"azP-gH-Zyj.text" = "Заголовок";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "b1v-db-PVn"; */
-"b1v-db-PVn.title" = "Back";
+"b1v-db-PVn.title" = "Назад";
 
 /* Class = "UINavigationItem"; title = "Profile"; ObjectID = "bQC-YJ-pCt"; */
-"bQC-YJ-pCt.title" = "Profile";
+"bQC-YJ-pCt.title" = "Профіль";
 
 /* Class = "UIButton"; normalTitle = "I don't have an Account"; ObjectID = "cSj-0p-R8m"; */
-"cSj-0p-R8m.normalTitle" = "I don't have an Account";
+"cSj-0p-R8m.normalTitle" = "У мене немає облікового запису";
 
 /* Class = "UIButton"; normalTitle = "Create Xpo Account"; ObjectID = "cSz-8l-Zbf"; */
-"cSz-8l-Zbf.normalTitle" = "Create Xpo Account";
+"cSz-8l-Zbf.normalTitle" = "Створити новий обліковий запис";
 
 /* Class = "UILabel"; text = "Location Name"; ObjectID = "cgr-83-ebB"; */
-"cgr-83-ebB.text" = "Location Name";
+"cgr-83-ebB.text" = "Місце проведення";
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "cs8-2e-PDP"; */
-"cs8-2e-PDP.text" = "Username";
+"cs8-2e-PDP.text" = "Логін";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "d5z-9g-8h4"; */
-"d5z-9g-8h4.text" = "Email";
+"d5z-9g-8h4.text" = "Пошта";
 
 /* Class = "UILabel"; text = "Full name"; ObjectID = "d7e-KH-qVH"; */
-"d7e-KH-qVH.text" = "Full name";
+"d7e-KH-qVH.text" = "Повне ім'я";
 
 /* Class = "UILabel"; text = "Expoooooooooo"; ObjectID = "dl8-wQ-zIn"; */
-"dl8-wQ-zIn.text" = "Expoooooooooo";
+"dl8-wQ-zIn.text" = "Виставкааааааа";
 
 /* Class = "UINavigationItem"; title = "My Expos"; ObjectID = "eg6-hd-hcz"; */
-"eg6-hd-hcz.title" = "My Expos";
+"eg6-hd-hcz.title" = "Мої виставки";
 
 /* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "fVY-dl-vHp"; */
-"fVY-dl-vHp.normalTitle" = "Log In";
+"fVY-dl-vHp.normalTitle" = "Увійти";
 
 /* Class = "UILabel"; text = "Expo by Organizer Name"; ObjectID = "gM0-q3-fIl"; */
-"gM0-q3-fIl.text" = "Expo by Organizer Name";
+"gM0-q3-fIl.text" = "Виставка організатора";
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "gmo-u3-4Sa"; */
-"gmo-u3-4Sa.text" = "Username";
+"gmo-u3-4Sa.text" = "Логін";
 
 /* Class = "UITextField"; placeholder = "Enter your username"; ObjectID = "h8R-3R-rDY"; */
-"h8R-3R-rDY.placeholder" = "Enter your username";
+"h8R-3R-rDY.placeholder" = "Уведіть логін";
 
 /* Class = "UITextField"; text = "nikndr"; ObjectID = "h8R-3R-rDY"; */
 "h8R-3R-rDY.text" = "nikndr";
 
 /* Class = "UIButton"; normalTitle = "Pick Model"; ObjectID = "kL3-Gj-twg"; */
-"kL3-Gj-twg.normalTitle" = "Pick Model";
+"kL3-Gj-twg.normalTitle" = "Оберіть модель";
 
 /* Class = "UILabel"; text = "Nikandr Marhal"; ObjectID = "kaV-9R-MJb"; */
 "kaV-9R-MJb.text" = "Nikandr Marhal";
 
 /* Class = "UITextField"; placeholder = "Enter your password"; ObjectID = "m9l-g9-D0m"; */
-"m9l-g9-D0m.placeholder" = "Enter your password";
+"m9l-g9-D0m.placeholder" = "Уведіть пароль";
 
 /* Class = "UITextField"; text = "12345678"; ObjectID = "m9l-g9-D0m"; */
 "m9l-g9-D0m.text" = "12345678";
 
 /* Class = "UITextField"; placeholder = "Create a secure password"; ObjectID = "n0d-a3-oW8"; */
-"n0d-a3-oW8.placeholder" = "Create a secure password";
+"n0d-a3-oW8.placeholder" = "Оберіть пароль";
 
 /* Class = "UILabel"; text = "error message"; ObjectID = "nnI-nm-fAt"; */
-"nnI-nm-fAt.text" = "error message";
+"nnI-nm-fAt.text" = "помилка";
 
 /* Class = "UILabel"; text = "Expo by Organizer Name"; ObjectID = "oie-gR-uDE"; */
-"oie-gR-uDE.text" = "Expo by Organizer Name";
+"oie-gR-uDE.text" = "Виставка організатора";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "pkb-4j-Q8s"; */
-"pkb-4j-Q8s.title" = "Settings";
+"pkb-4j-Q8s.title" = "Налаштування";
 
 /* Class = "UITabBarItem"; title = "Text Observing"; ObjectID = "plM-OP-w53"; */
-"plM-OP-w53.title" = "Text Observing";
+"plM-OP-w53.title" = "Текст";
 
 /* Class = "UITextField"; placeholder = "Enter your full name"; ObjectID = "qGG-zM-i18"; */
-"qGG-zM-i18.placeholder" = "Enter your full name";
+"qGG-zM-i18.placeholder" = "Уведіть повне ім'я";
 
 /* Class = "UILabel"; text = "model1_1.obj"; ObjectID = "rhl-bq-Cih"; */
 "rhl-bq-Cih.text" = "model1_1.obj";
@@ -222,13 +222,15 @@
 "vDN-es-Cl7.text" = "0";
 
 /* Class = "UIButton"; normalTitle = "Save"; ObjectID = "vtQ-QN-gkC"; */
-"vtQ-QN-gkC.normalTitle" = "Save";
+"vtQ-QN-gkC.normalTitle" = "Зберегти";
 
 /* Class = "UILabel"; text = "23.04.2020–31.07.2020"; ObjectID = "vtp-OW-hqh"; */
 "vtp-OW-hqh.text" = "23.04.2020–31.07.2020";
 
 /* Class = "UITextField"; placeholder = "You will use it for Log In"; ObjectID = "xmZ-yY-cKd"; */
-"xmZ-yY-cKd.placeholder" = "You will use it for Log In";
+"xmZ-yY-cKd.placeholder" = "З ним ви будете авторизуватися";
 
 /* Class = "UITextField"; placeholder = "To reach you"; ObjectID = "ylG-9g-H35"; */
-"ylG-9g-H35.placeholder" = "To reach you";
+"ylG-9g-H35.placeholder" = "Щоб не загубитися";
+
+"sGd-v4-qBC.title" = "В розробці";

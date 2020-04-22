@@ -61,14 +61,16 @@ class CommentsViewController: UITableViewController {
     }
     
     func configureCommentInputAlert(for user: User) -> UIAlertController {
-        let alert = UIAlertController(title: "What do you think about \(expo.name)?",
-                                      message: "Add your comment to share an opinion",
+        let alertTitle = "\(NSLocalizedString("What do you think about", comment: "")) \(expo.name)?"
+        let alertBody = localizedString(for: .addComment)
+        let alert = UIAlertController(title: alertTitle,
+                                      message: alertBody,
                                       preferredStyle: .alert)
         alert.addTextField { textField in
-            textField.placeholder = "Please, type in your comment"
+            textField.placeholder = localizedString(for: .pleaseTypeInComment)
         }
         
-        let action = UIAlertAction(title: "Submit", style: .default) { [weak alert, weak self] _ in
+        let action = UIAlertAction(title: localizedString(for: .submit), style: .default) { [weak alert, weak self] _ in
             guard let self = self, let alert = alert else { return }
             DispatchQueue.main.async {
                 user.comment(on: self.expo, with: (alert.textFields?.first?.text!)!) { result in
@@ -77,7 +79,8 @@ class CommentsViewController: UITableViewController {
                         self.reloadComments()
                     case .failure(let error):
                         debugPrint(error)
-                        let errorAlert = UIAlertController(title: "Problem with adding your comment. Please, try again later.", message: "", preferredStyle: .alert)
+                        let alertTitle = localizedString(for: .problemWithAddingComment)
+                        let errorAlert = UIAlertController(title: alertTitle, message: "", preferredStyle: .alert)
                         errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.present(errorAlert, animated: true, completion: nil)
                     }
@@ -85,7 +88,12 @@ class CommentsViewController: UITableViewController {
             }
         }
         
+        let cancelAction = UIAlertAction(title: localizedString(for: .cancel), style: .cancel) { [weak alert] action in
+            alert?.dismiss(animated: true, completion: nil)
+        }
+        
         alert.addAction(action)
+        alert.addAction(cancelAction)
         
         return alert
     }
@@ -125,7 +133,9 @@ class CommentsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let alert = UIAlertController.loadingView(withTitle: "Please wait", message: "Deleting your comment...")
+        let alertTitle = localizedString(for: .pleaseWait)
+        let alertBody = "\(localizedString(for: .deletingComment))..."
+        let alert = UIAlertController.loadingView(withTitle: alertTitle, message: alertBody)
         present(alert, animated: true, completion: nil)
         expo.comments[indexPath.row].delete { [weak self, weak alert] result in
             guard let self = self, let alert = alert else { return }
@@ -147,6 +157,9 @@ class CommentsViewController: UITableViewController {
     }
     
     // MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - Cell identifiers

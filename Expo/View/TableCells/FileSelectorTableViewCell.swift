@@ -9,16 +9,21 @@
 import UIKit
 
 class FileSelectorTableViewCell: UITableViewCell {
+    // MARK: - Outlets
+
+    @IBOutlet weak var pickMarkerButton: UIButton!
+    @IBOutlet weak var pickModelButton: UIButton!
+    @IBOutlet weak var pickMarkerLabel: UILabel!
+    @IBOutlet weak var pickModelLabel: UILabel!
+    
+    
+
+    // MARK: - Life cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        pickMarkerButton.makeRoundedCorners()
+        pickModelButton.makeRoundedCorners()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

@@ -42,7 +42,8 @@ class ExpoViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func proceedButtonPressed(_ sender: UIButton) {
-        updateState()
+//        updateState()
+        performSegue(withIdentifier: .showAR, sender: self)
     }
     
     @IBAction func addCommentButtonPressed(_ sender: UIButton) {
@@ -75,6 +76,7 @@ class ExpoViewController: UIViewController {
             self.visitExpo()
 //            self.configureUIElements()
         }
+        proceedButton.setTitle(Constants.openButtonText, for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,7 +162,9 @@ class ExpoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segueIdentifier(for: segue) {
         case .showAR:
-            break
+            debugPrint(segue.destination)
+            let destination = segue.destination as! ARViewController
+            destination.expo = expo
         case .showComments:
             let destination = segue.destination as! CommentsViewController
             destination.expo = expo
@@ -181,11 +185,11 @@ extension ExpoViewController: SegueHandler {
 extension ExpoViewController {
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
-        static let downloadButtonText = "Download Expo"
+        static let downloadButtonText = localizedString(for: .open)//localizedString(for: .downloadExpo)
         static let downloadButtonColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)
-        static let cancelButtonText = "Cancel downloading"
+        static let cancelButtonText = localizedString(for: .cancel)
         static let cancelButtonColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        static let openButtonText = "Open Expo"
+        static let openButtonText = localizedString(for: .open)
         static let openButtonColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         static let likeButtonColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         static let dislikeButtonColor = #colorLiteral(red: 0.5960784314, green: 0.5960784314, blue: 0.6156862745, alpha: 1)
